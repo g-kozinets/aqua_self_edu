@@ -19,6 +19,6 @@ public class TestUtils {
 
     public static Object getRandomElement(ArrayList list) {
         Random rand = new Random();
-        return list.get(rand.nextInt(list.size() - 1));
+        return list.get(rand.nextInt(list.size()));
     }
 }

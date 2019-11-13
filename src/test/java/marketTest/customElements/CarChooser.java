@@ -4,6 +4,7 @@ import framework.driver.Browser;
 import framework.pageElements.BaseElement;
 import framework.pageElements.Button;
 import framework.utils.TestUtils;
+import marketTest.models.CarSpecs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarChooser extends BaseElement {
-    private String listElemName;
     private static String LIST_ELEM_NAME = "[text()='%s']";
     private static String LIST_POSTFIX = "/option";
     private static String MAKERS_LIST = "//select[@name='makeId']";
@@ -20,6 +20,7 @@ public class CarChooser extends BaseElement {
     private List<WebElement> makers = new ArrayList<>();
     private List<WebElement> models = new ArrayList<>();
     private List<WebElement> years = new ArrayList<>();
+    public ArrayList<CarSpecs> carsList = new ArrayList<>();
     private Button searchBtn = new Button(By.xpath("//input[@value='Search']"), "Search button");
     private Button makerBtn = new Button(By.xpath(MAKERS_LIST), "");
     private Button modelBtn = new Button(By.xpath(MODELS_LIST), "");
@@ -36,24 +37,25 @@ public class CarChooser extends BaseElement {
 
     }
 
-    public void chooseRandomCar() {
+    public CarSpecs getRandomCar() {
         Button listElemBtn;
 
-        listElemName = (String) TestUtils.getRandomElement(getMakers());
+        String makerName = (String) TestUtils.getRandomElement(getMakers());
         makerBtn.waitAndClick();
-        listElemBtn = new Button(By.xpath(String.format(MAKERS_LIST + LIST_POSTFIX + LIST_ELEM_NAME, listElemName)), "");
+        listElemBtn = new Button(By.xpath(String.format(MAKERS_LIST + LIST_POSTFIX + LIST_ELEM_NAME, makerName)), "");
         listElemBtn.click();
 
-        listElemName = (String) TestUtils.getRandomElement(getModels());
+        String modelName = (String) TestUtils.getRandomElement(getModels());
         modelBtn.click();
-        listElemBtn = new Button(By.xpath(String.format(MODELS_LIST + LIST_POSTFIX + LIST_ELEM_NAME, listElemName)), "");
+        listElemBtn = new Button(By.xpath(String.format(MODELS_LIST + LIST_POSTFIX + LIST_ELEM_NAME, modelName)), "");
         listElemBtn.click();
 
-        listElemName = (String) TestUtils.getRandomElement(getYears());
+        String year = (String) TestUtils.getRandomElement(getYears());
         yearBtn.click();
-        listElemBtn = new Button(By.xpath(String.format(YEARS_LIST + LIST_POSTFIX + LIST_ELEM_NAME, listElemName)), "");
+        listElemBtn = new Button(By.xpath(String.format(YEARS_LIST + LIST_POSTFIX + LIST_ELEM_NAME, year)), "");
         listElemBtn.click();
 
+        return new CarSpecs(makerName, modelName, Integer.parseInt(year));
     }
 
     public void doSearch() {
@@ -62,6 +64,7 @@ public class CarChooser extends BaseElement {
 
     public ArrayList getMakers() {
         makers = Browser.getDriver().findElements(By.xpath(MAKERS_LIST + LIST_POSTFIX));
+        makers.remove(0);
         ArrayList<String> makersString = new ArrayList<>();
 
         for (WebElement item : makers) {
@@ -72,6 +75,7 @@ public class CarChooser extends BaseElement {
 
     public ArrayList getModels() {
         models = Browser.getDriver().findElements(By.xpath(MODELS_LIST + LIST_POSTFIX));
+        models.remove(0);
         ArrayList<String> modelsString = new ArrayList<>();
 
         for (WebElement item : models) {
@@ -82,6 +86,7 @@ public class CarChooser extends BaseElement {
 
     public ArrayList getYears() {
         years = Browser.getDriver().findElements(By.xpath(YEARS_LIST + LIST_POSTFIX));
+        years.remove(0);
         ArrayList<String> yearsString = new ArrayList<>();
 
         for (WebElement item : years) {
