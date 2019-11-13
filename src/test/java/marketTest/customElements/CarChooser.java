@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarChooser extends BaseElement {
+public class CarChooser {
     private static String LIST_ELEM_NAME = "[text()='%s']";
     private static String LIST_POSTFIX = "/option";
     private static String MAKERS_LIST = "//select[@name='makeId']";
@@ -26,16 +26,6 @@ public class CarChooser extends BaseElement {
     private Button modelBtn = new Button(By.xpath(MODELS_LIST), "");
     private Button yearBtn = new Button(By.xpath(YEARS_LIST), "");
 
-    public CarChooser(By locator, String elementName) {
-        super(locator, elementName);
-    }
-
-    public void loadData() {
-        Button makersBtn = new Button(By.xpath(MAKERS_LIST), "list of makers");
-        //makersBtn.click();
-        makers = Browser.getDriver().findElements(By.xpath(MAKERS_LIST + LIST_POSTFIX));
-
-    }
 
     public CarSpecs getRandomCar() {
         Button listElemBtn;

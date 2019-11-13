@@ -1,52 +1,61 @@
 package marketTest;
 
 import framework.driver.Browser;
-import marketTest.carsPages.MainPage;
-import marketTest.carsPages.ResearchPage;
-import marketTest.carsPages.CarPage;
-import marketTest.carsPages.TrimPage;
+import marketTest.carsPages.*;
 import marketTest.customElements.CarChooser;
 import marketTest.models.CarSpecs;
 import org.openqa.selenium.By;
 import org.testng.annotations.*;
 import framework.utils.PropertyReader;
 
+import java.awt.image.CropImageFilter;
+
 public class MarketTests extends BaseTest {
+
+    private MainPage mainPage;
+    private ResearchPage researchPage;
+    private CarPage carPage;
+    private TrimPage trimPage;
 
     @Test
     public void categoryTest() throws Exception {
-        MainPage mainPage = new MainPage();
+        mainPage = new MainPage();
         CarSpecs firstCar;
         CarSpecs secondCar;
-        ResearchPage researchPage = new ResearchPage();
-        CarChooser carChooser = new CarChooser(By.xpath(""), "");
+        researchPage = new ResearchPage();
 
         //Загрузка главной страницы
         Browser.goToUrl(PropertyReader.getProp("URL"));
 
-        mainPage.goToResearch();
-
-        firstCar = carChooser.getRandomCar();
-        carChooser.doSearch();
-
-        CarPage carPage = new CarPage();
-        carPage.goToTrims();
-
-        TrimPage trimPage = new TrimPage();
-        firstCar.setEngine(trimPage.getEngineModel());
-        firstCar.setTransmission(trimPage.getTransmissionModel());
+        firstCar = getRandomCarInfo();
 
         Browser.goToUrl(PropertyReader.getProp("URL"));
 
+        secondCar = getRandomCarInfo();
+
         mainPage.goToResearch();
-        secondCar = carChooser.getRandomCar();
-        carChooser.doSearch();
+        researchPage.goToCompare();
+
+        ComparePage comparePage = new ComparePage();
+        comparePage.defineCarToCompare(firstCar.getMaker(), firstCar.getModel(), firstCar.getYear());
+        comparePage.startComparing();
+        comparePage.addCarToCompare(secondCar.getMaker(), secondCar.getModel(), secondCar.getYear());
+
+
+    }
+
+    public CarSpecs getRandomCarInfo() {
+        CarSpecs carSpecs;
+        mainPage.goToResearch();
+        carSpecs = researchPage.getRandomCar();
+        researchPage.doSearch();
+        carPage = new CarPage();
         carPage.goToTrims();
-        secondCar.setEngine(trimPage.getEngineModel());
-        secondCar.setTransmission(trimPage.getTransmissionModel());
+        trimPage = new TrimPage();
+        carSpecs.setEngine(trimPage.getEngineModel());
+        carSpecs.setTransmission(trimPage.getTransmissionModel());
 
-
-
+        return carSpecs;
     }
 
 }
