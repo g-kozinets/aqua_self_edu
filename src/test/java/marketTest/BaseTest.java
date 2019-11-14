@@ -16,7 +16,6 @@ public abstract class BaseTest {
 
     @AfterTest
     public void closeBrowser() {
-        log.info("Closing browser");
         //Browser.closeBrowser();
     }
 

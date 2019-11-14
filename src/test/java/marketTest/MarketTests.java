@@ -3,8 +3,11 @@ package marketTest;
 import framework.driver.Browser;
 import marketTest.carsPages.*;
 import marketTest.models.CarSpecs;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import framework.utils.PropertyReader;
+
+import java.util.ArrayList;
 
 public class MarketTests extends BaseTest {
 
@@ -12,12 +15,13 @@ public class MarketTests extends BaseTest {
     private ResearchPage researchPage;
     private CarPage carPage;
     private TrimPage trimPage;
+    private CarSpecs firstCar;
+    private CarSpecs secondCar;
 
     @Test
     public void categoryTest() throws Exception {
         mainPage = new MainPage();
-        CarSpecs firstCar;
-        CarSpecs secondCar;
+
         researchPage = new ResearchPage();
 
         //Загрузка главной страницы
@@ -37,10 +41,24 @@ public class MarketTests extends BaseTest {
         comparePage.startComparing();
         comparePage.addCarToCompare(secondCar.getMaker(), secondCar.getModel(), secondCar.getYear());
 
-
+        Assert.assertTrue(validateCarTrim());
     }
 
-    public CarSpecs getRandCarInfo() {
+    private boolean validateCarTrim() {
+        String engine = "Engine";
+        String trans = "Transmission";
+        CarSpecs firstCarInTable = firstCar;
+        CarSpecs secondCarInTable = secondCar;
+        ComparisonTable table = new ComparisonTable();
+
+        firstCarInTable.setTrim(table.getTableAttributes(1, engine, trans));
+
+        secondCarInTable.setTrim(table.getTableAttributes(2, engine, trans));
+
+        return firstCar.equals(firstCarInTable) && secondCar.equals(secondCarInTable);
+    }
+
+    private CarSpecs getRandCarInfo() {
         CarSpecs carSpecs = getRandCarWithTrims();
 
         carPage.goToTrims();
@@ -51,7 +69,7 @@ public class MarketTests extends BaseTest {
         return carSpecs;
     }
 
-    public CarSpecs getRandCarWithTrims() {
+    private CarSpecs getRandCarWithTrims() {
         CarSpecs carSpecs = null;
         boolean hasTrim = false;
         while (!hasTrim) {

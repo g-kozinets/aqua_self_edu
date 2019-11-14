@@ -22,6 +22,10 @@ public abstract class BaseElement {
         webElement.click();
     }
 
+    public Object getAttribute(String attributeName) {
+       return webElement.getAttribute(attributeName);
+    }
+
     public void click() {
         Browser.getDriver().findElement(locator).click();
     }
