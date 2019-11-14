@@ -32,6 +32,10 @@ public class CarSpecs extends BaseModel {
                 transmission.equals(carSpecs.transmission);
     }
 
+    public String getFullName() {
+        return String.format("%s %s %s", year, maker, model);
+    }
+
     public String getMaker() {
         return maker;
     }

@@ -41,4 +41,9 @@ public class Waiters {
         Wait<WebDriver> wait = new WebDriverWait(driver, timeOut);
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+
+    public static void invisibilityWaiter(By locator) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, timeOut);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
 }

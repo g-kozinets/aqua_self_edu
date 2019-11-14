@@ -1,9 +1,15 @@
 package carsProject.pages;
 
+import framework.driver.Browser;
 import framework.pageElements.Button;
 import framework.pageElements.DropDownList;
 import carsProject.models.CarSpecs;
+import framework.pageElements.Text;
+import framework.utils.Waiters;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
 
 public class ComparePage extends MainForm{
 
@@ -14,6 +20,7 @@ public class ComparePage extends MainForm{
     private static By ADD_CAR_LOCATOR = By.className("add-car-icon");
     private static By ADD_ANOTHER_LOCATOR = By.className("modal-button");
     private static By TABLE_LOCATOR = By.className("compare-categories");
+    private static By CAR_NAME_LOCATOR = By.className("listing-name");
 
     public ComparePage() {
         uniqueElement = startComparingBtn;
@@ -38,5 +45,16 @@ public class ComparePage extends MainForm{
         new DropDownList(By.id("year-dropdown"), "List of years").selectItem(Integer.toString(car.getYear()));
 
         new Button(ADD_ANOTHER_LOCATOR, "Add another car button").click();
+        Waiters.invisibilityWaiter(spinner);
+    }
+
+    public ArrayList getCarNames() {
+        ArrayList<WebElement> carNames = (ArrayList) Browser.getDriver().findElements(CAR_NAME_LOCATOR);
+        ArrayList carNamesString = new ArrayList();
+
+        for (WebElement name: carNames) {
+            carNamesString.add(name.getText());
+        }
+        return carNamesString;
     }
 }

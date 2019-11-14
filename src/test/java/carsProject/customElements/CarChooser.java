@@ -16,13 +16,16 @@ public class CarChooser extends MainForm {
     private static String MAKERS_LIST = "//select[@name='makeId']";
     private static String MODELS_LIST = "//select[@name='modelId']";
     private static String YEARS_LIST = "//select[@name='year']";
+    DropDownList makers;
+    DropDownList models;
+    DropDownList years;
     private Button searchBtn = new Button(By.xpath("//input[@value='Search']"), "Search button");
 
 
     public CarSpecs getRandomCar() {
-        DropDownList makers = new DropDownList(By.xpath(MAKERS_LIST), "List of makers");
-        DropDownList models = new DropDownList(By.xpath(MODELS_LIST), "List of models");
-        DropDownList years = new DropDownList(By.xpath(YEARS_LIST), "List of years");
+        makers = new DropDownList(By.xpath(MAKERS_LIST), "List of makers");
+        models = new DropDownList(By.xpath(MODELS_LIST), "List of models");
+        years = new DropDownList(By.xpath(YEARS_LIST), "List of years");
 
         String makerName = (String) TestUtils.getRandomElement(getOptionsList(makers));
         makers.selectItem(makerName);
@@ -34,6 +37,10 @@ public class CarChooser extends MainForm {
         years.selectItem(year);
 
         return new CarSpecs(makerName, modelName, Integer.parseInt(year));
+    }
+
+    public String getChosenParam() {
+        return String.format("%s %s %s", years.getSelectedOption(), makers.getSelectedOption(), models.getSelectedOption());
     }
 
     public void doSearch() {

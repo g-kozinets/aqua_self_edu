@@ -22,4 +22,8 @@ public class DropDownList extends BaseElement{
     public void selectItem(String itemName) {
         select.selectByVisibleText(itemName);
     }
+
+    public String getSelectedOption() {
+        return select.getFirstSelectedOption().getText();
+    }
 }
