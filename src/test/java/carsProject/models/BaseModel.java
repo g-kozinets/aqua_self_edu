@@ -1,4 +1,4 @@
-package marketTest.models;
+package carsProject.models;
 
 import framework.driver.Browser;
 import org.openqa.selenium.WebDriver;

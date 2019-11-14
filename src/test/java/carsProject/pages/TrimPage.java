@@ -1,8 +1,6 @@
-package marketTest.carsPages;
+package carsProject.pages;
 
-import framework.pageElements.Text;
-import marketTest.customElements.TrimCard;
-import org.openqa.selenium.By;
+import carsProject.customElements.TrimCard;
 
 public class TrimPage extends BaseForm{
 

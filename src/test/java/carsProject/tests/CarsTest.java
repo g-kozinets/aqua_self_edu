@@ -1,17 +1,13 @@
-package marketTest;
+package carsProject.tests;
 
-import framework.driver.Browser;
-import marketTest.carsPages.*;
-import marketTest.models.CarSpecs;
+import carsProject.pages.*;
+import carsProject.models.CarSpecs;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import framework.utils.PropertyReader;
 
-import java.util.ArrayList;
+public class CarsTest extends BaseTest {
 
-public class MarketTests extends BaseTest {
-
-    private MainPage mainPage;
+    private MainForm mainForm;
     private ResearchPage researchPage;
     private CarPage carPage;
     private TrimPage trimPage;
@@ -20,26 +16,23 @@ public class MarketTests extends BaseTest {
 
     @Test
     public void categoryTest() throws Exception {
-        mainPage = new MainPage();
-
-        researchPage = new ResearchPage();
+        mainForm = new MainForm();
 
         //Загрузка главной страницы
-        Browser.goToUrl(PropertyReader.getProp("URL"));
 
         firstCar = getRandCarInfo();
 
-        Browser.goToUrl(PropertyReader.getProp("URL"));
+        researchPage.goToMainPage();
 
         secondCar = getRandCarInfo();
 
-        mainPage.goToResearch();
+        mainForm.goToResearch();
         researchPage.goToCompare();
 
         ComparePage comparePage = new ComparePage();
-        comparePage.defineCarToCompare(firstCar.getMaker(), firstCar.getModel(), firstCar.getYear());
+        comparePage.initiateCarComparison(firstCar);
         comparePage.startComparing();
-        comparePage.addCarToCompare(secondCar.getMaker(), secondCar.getModel(), secondCar.getYear());
+        comparePage.addCarToCompare(secondCar);
 
         Assert.assertTrue(validateCarTrim());
     }
@@ -73,7 +66,8 @@ public class MarketTests extends BaseTest {
         CarSpecs carSpecs = null;
         boolean hasTrim = false;
         while (!hasTrim) {
-            mainPage.goToResearch();
+            mainForm.goToResearch();
+            researchPage = new ResearchPage();
             carSpecs = researchPage.getRandomCar();
             researchPage.doSearch();
             carPage = new CarPage();

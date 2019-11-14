@@ -1,15 +1,20 @@
-package marketTest.carsPages;
+package carsProject.pages;
 
 import framework.pageElements.Button;
-import framework.utils.TestUtils;
-import marketTest.customElements.CarChooser;
-import marketTest.models.CarSpecs;
+import carsProject.customElements.CarChooser;
+import carsProject.models.CarSpecs;
 import org.openqa.selenium.By;
 
-public class ResearchPage extends BaseForm{
+public class ResearchPage extends MainForm{
 
+    Button mainPageBtn = new Button(By.className("global-nav__logo"), "Main page button");
     Button compareBtn = new Button(By.xpath("//a[@data-linkname='compare-cars']"), "Compare cars button");
     CarChooser carChooser = new CarChooser();
+
+    @Override
+    public void goToMainPage() {
+        mainPageBtn.click();
+    }
 
     public CarSpecs getRandomCar(){
         return carChooser.getRandomCar();

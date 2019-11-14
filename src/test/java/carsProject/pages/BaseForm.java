@@ -1,4 +1,4 @@
-package marketTest.carsPages;
+package carsProject.pages;
 
 import framework.driver.Browser;
 import framework.pageElements.BaseElement;

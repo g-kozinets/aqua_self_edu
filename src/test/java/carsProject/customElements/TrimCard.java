@@ -1,4 +1,4 @@
-package marketTest.customElements;
+package carsProject.customElements;
 
 import framework.pageElements.Text;
 import org.openqa.selenium.By;
@@ -15,6 +15,5 @@ public class TrimCard {
 
     public String getTransmission() {
         return transmission.getText();
-
     }
 }

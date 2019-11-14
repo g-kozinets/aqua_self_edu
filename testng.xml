@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test  verbose="2" preserve-order="true" name="/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/YandexMarketTest">
         <classes>
-            <class name="marketTest.MarketTests" />
+            <class name="carsProject.tests.CarsTest" />
         </classes>
     </test>
 </suite>
