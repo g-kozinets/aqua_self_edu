@@ -1,5 +1,6 @@
 package carsProject.customElements;
 
+import carsProject.pages.MainForm;
 import framework.driver.Browser;
 import framework.pageElements.Button;
 import framework.pageElements.DropDownList;
@@ -11,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarChooser {
+public class CarChooser extends MainForm {
     private static String MAKERS_LIST = "//select[@name='makeId']";
     private static String MODELS_LIST = "//select[@name='modelId']";
     private static String YEARS_LIST = "//select[@name='year']";

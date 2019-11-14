@@ -12,6 +12,10 @@ public class ComparisonTable extends CarChooser {
     private Button lastCarImgBtn = new Button(By.xpath("//*[@id='image-header']/span[contains(@class, 'info-data')][last()]"), "");
     private String indexAttribute = "index";
 
+    public ComparisonTable() {
+        uniqueElement = lastCarImgBtn;
+    }
+
     public int getNumberOfCars() {
         return (int) lastCarImgBtn.getAttribute(indexAttribute);
     }

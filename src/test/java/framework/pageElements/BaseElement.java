@@ -11,6 +11,9 @@ public abstract class BaseElement {
     protected By locator;
     private String elementName;
 
+    public BaseElement() {
+    }
+
     public BaseElement(By locator, String elementName) {
         this.locator = locator;
         this.elementName = elementName;

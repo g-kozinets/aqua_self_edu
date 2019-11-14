@@ -6,6 +6,10 @@ public class TrimPage extends BaseForm{
 
     private TrimCard trimCard = new TrimCard();
 
+    public TrimPage() {
+        uniqueElement = trimCard;
+    }
+
     public String getEngineModel() {
         return trimCard.getEngine();
     }

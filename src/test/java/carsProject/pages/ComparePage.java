@@ -5,7 +5,7 @@ import framework.pageElements.DropDownList;
 import carsProject.models.CarSpecs;
 import org.openqa.selenium.By;
 
-public class ComparePage {
+public class ComparePage extends MainForm{
 
     private DropDownList makersList = new DropDownList(By.id("make-dropdown"), "List of makers");
     private DropDownList modelsList = new DropDownList(By.id("model-dropdown"), "List of models");
@@ -14,6 +14,10 @@ public class ComparePage {
     private static By ADD_CAR_LOCATOR = By.className("add-car-icon");
     private static By ADD_ANOTHER_LOCATOR = By.className("modal-button");
     private static By TABLE_LOCATOR = By.className("compare-categories");
+
+    public ComparePage() {
+        uniqueElement = startComparingBtn;
+    }
 
     public void initiateCarComparison(CarSpecs car) {
         makersList.selectItem(car.getMaker());

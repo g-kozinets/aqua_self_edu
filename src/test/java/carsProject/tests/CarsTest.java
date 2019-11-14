@@ -19,6 +19,8 @@ public class CarsTest extends BaseTest {
         mainForm = new MainForm();
 
         //Загрузка главной страницы
+        Assert.assertTrue(mainForm.isOnThePage());
+
 
         firstCar = getRandCarInfo();
 

@@ -11,6 +11,10 @@ public class ResearchPage extends MainForm{
     Button compareBtn = new Button(By.xpath("//a[@data-linkname='compare-cars']"), "Compare cars button");
     CarChooser carChooser = new CarChooser();
 
+    public ResearchPage() {
+        uniqueElement = compareBtn;
+    }
+
     @Override
     public void goToMainPage() {
         mainPageBtn.click();
