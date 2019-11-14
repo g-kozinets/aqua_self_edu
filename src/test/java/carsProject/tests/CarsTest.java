@@ -15,7 +15,7 @@ public class CarsTest extends BaseTest {
     private CarSpecs secondCar;
 
     @Test
-    public void categoryTest() throws Exception {
+    public void categoryTest() {
         mainForm = new MainForm();
 
         //Загрузка главной страницы
@@ -49,44 +49,4 @@ public class CarsTest extends BaseTest {
 
         Assert.assertTrue(new Steps().validateCarTrim(firstCar, secondCar));
     }
-
-//    private boolean validateCarTrim() {
-//        String engine = "Engine";
-//        String trans = "Transmission";
-//        CarSpecs firstCarInTable = firstCar;
-//        CarSpecs secondCarInTable = secondCar;
-//        ComparisonTable table = new ComparisonTable();
-//
-//        firstCarInTable.setTrim(table.getTableAttributes(1, engine, trans));
-//
-//        secondCarInTable.setTrim(table.getTableAttributes(2, engine, trans));
-//
-//        return firstCar.equals(firstCarInTable) && secondCar.equals(secondCarInTable);
-//    }
-//
-//    private CarSpecs getRandCarInfo() {
-//        CarSpecs carSpecs = getRandCarWithTrims();
-//
-//        carPage.goToTrims();
-//        trimPage = new TrimPage();
-//        carSpecs.setEngine(trimPage.getEngineModel());
-//        carSpecs.setTransmission(trimPage.getTransmissionModel());
-//
-//        return carSpecs;
-//    }
-//
-//    private CarSpecs getRandCarWithTrims() {
-//        CarSpecs carSpecs = null;
-//        boolean hasTrim = false;
-//        while (!hasTrim) {
-//            mainForm.goToResearch();
-//            researchPage = new ResearchPage();
-//            carSpecs = researchPage.getRandomCar();
-//            researchPage.doSearch();
-//            carPage = new CarPage();
-//            hasTrim = carPage.checkTrims();
-//        }
-//        return carSpecs;
-//    }
-
 }

@@ -3,9 +3,7 @@ package framework.pageElements;
 import framework.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.ArrayList;
+import org.openqa.selenium.support.ui.Select;;
 import java.util.List;
 
 public class DropDownList extends BaseElement{

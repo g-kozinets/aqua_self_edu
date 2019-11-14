@@ -4,7 +4,6 @@ import framework.driver.Browser;
 import framework.pageElements.Button;
 import framework.pageElements.DropDownList;
 import carsProject.models.CarSpecs;
-import framework.pageElements.Text;
 import framework.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
