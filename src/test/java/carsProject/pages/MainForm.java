@@ -5,6 +5,7 @@ import framework.pageElements.BaseElement;
 import framework.pageElements.Button;
 import framework.pageElements.Spinner;
 import org.openqa.selenium.By;
+import static framework.logger.MyLogger.log;
 
 public class MainForm extends BaseForm {
     private By MAIN_LOGO_LOCATOR = By.id("//*[@id='cars-com-logo']");
@@ -17,10 +18,12 @@ public class MainForm extends BaseForm {
     }
 
     public void goToMainPage() {
+        log.info("Going to main page");
         new Button(MAIN_LOGO_LOCATOR, "Button for main page").click();
     }
 
     public void goToResearch() {
+        log.info("Going to research");
         researchBtn.waitAndClick();
     }
 }

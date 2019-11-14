@@ -4,6 +4,8 @@ import framework.pageElements.Button;
 import framework.pageElements.Text;
 import org.openqa.selenium.By;
 
+import static framework.logger.MyLogger.log;
+
 public class CarPage extends MainForm{
 
     private Button trimsBtn = new Button(By.xpath("//a[@data-linkname='trim-compare']"), "Trims button");
@@ -18,6 +20,7 @@ public class CarPage extends MainForm{
     }
 
     public void goToTrims() {
+        log.info("Going to trims");
         trimsBtn.waitAndClick();
     }
 }

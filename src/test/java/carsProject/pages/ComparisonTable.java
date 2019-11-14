@@ -1,6 +1,7 @@
 package carsProject.pages;
 
 import framework.driver.Browser;
+import static framework.logger.MyLogger.log;
 import framework.pageElements.Button;
 import carsProject.customElements.CarChooser;
 import org.openqa.selenium.By;
@@ -21,6 +22,7 @@ public class ComparisonTable extends CarChooser {
     }
 
     public ArrayList<String> getTableAttributes(int carNumber, String... attribute) {
+        log.info("Getting attribute info from table");
         ArrayList<String> trimArr = new ArrayList<String>();
 
         for (int i = 0; i < attribute.length; i++) {

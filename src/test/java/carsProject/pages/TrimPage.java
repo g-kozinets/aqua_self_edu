@@ -2,6 +2,7 @@ package carsProject.pages;
 
 import carsProject.customElements.TrimCard;
 import org.openqa.selenium.By;
+import static framework.logger.MyLogger.log;
 
 public class TrimPage extends BaseForm{
 
@@ -12,10 +13,12 @@ public class TrimPage extends BaseForm{
     }
 
     public String getEngineModel() {
+        log.info("Getting engine model");
         return trimCard.getEngine();
     }
 
     public String getTransmissionModel() {
+        log.info("Getting transmission");
         return trimCard.getTransmission();
     }
 

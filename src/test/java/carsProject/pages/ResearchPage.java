@@ -4,6 +4,7 @@ import framework.pageElements.Button;
 import carsProject.customElements.CarChooser;
 import carsProject.models.CarSpecs;
 import org.openqa.selenium.By;
+import static framework.logger.MyLogger.log;
 
 public class ResearchPage extends MainForm{
 
@@ -17,6 +18,7 @@ public class ResearchPage extends MainForm{
 
     @Override
     public void goToMainPage() {
+        log.info("Going to main page");
         mainPageBtn.click();
     }
 
