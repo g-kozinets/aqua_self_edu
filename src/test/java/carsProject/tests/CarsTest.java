@@ -25,12 +25,12 @@ public class CarsTest extends BaseTest {
         researchPage = new ResearchPage();
         Assert.assertTrue(researchPage.isOnThePage(), "Not on research page");
 
-        firstCar = new Steps().getRandCarInfo(mainForm);
+        firstCar = new Steps().getRandCarInfo();
 
         researchPage.goToMainPage();
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 
-        secondCar = new Steps().getRandCarInfo(mainForm);
+        secondCar = new Steps().getRandCarInfo();
 
         mainForm.goToResearch();
         Assert.assertTrue(researchPage.isOnThePage(), "Not on research page");
@@ -44,8 +44,8 @@ public class CarsTest extends BaseTest {
         Assert.assertEquals(comparePage.getCarNames().get(0), firstCar.getFullName(), "First car name in comparison doesn't match");
 
         comparePage.addCarToCompare(secondCar);
-        Assert.assertEquals(comparePage.getCarNames().get(1), secondCar.getFullName(), "Second car name in comparison doesn't match\"");
+        Assert.assertEquals(comparePage.getCarNames().get(1), secondCar.getFullName(), "Second car name in comparison doesn't match");
 
-        Assert.assertTrue(new Steps().validateCarTrim(firstCar, secondCar), "Trims in compare table doesn't match");
+        Assert.assertTrue(new Steps().carTrimIsSame(firstCar, secondCar), "Trims in compare table doesn't match");
     }
 }

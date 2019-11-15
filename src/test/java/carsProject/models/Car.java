@@ -2,7 +2,7 @@ package carsProject.models;
 
 import java.util.ArrayList;
 
-public class Car extends BaseModel {
+public class Car extends BaseModel implements Cloneable {
     private String maker;
     private String model;
     private int year;
@@ -31,6 +31,18 @@ public class Car extends BaseModel {
                 engine.equals(car.engine) &&
                 transmission.equals(car.transmission);
     }
+
+    @Override
+    public Car clone() {
+        Car clone = null;
+        try {
+            clone = (Car) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+        return clone;
+    }
+
 
     public String getFullName() {
         return String.format("%s %s %s", year, maker, model);

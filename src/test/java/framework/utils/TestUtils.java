@@ -1,7 +1,10 @@
 package framework.utils;
 
 
+import carsProject.models.Car;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class TestUtils {
@@ -19,6 +22,8 @@ public class TestUtils {
 
     public static Object getRandomElement(ArrayList list) {
         Random rand = new Random();
-        return list.get(rand.nextInt(list.size()));
+        if (list.size() > 1) {
+            return list.get(rand.nextInt(list.size()));
+        } else return list.get(0);
     }
 }

@@ -4,27 +4,49 @@ import carsProject.models.Car;
 import carsProject.pages.*;
 import org.testng.Assert;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class Steps {
 
     private CarPage carPage;
     private TrimPage trimPage;
+    private MainForm mainForm;
+    private String engine = "Engine";
+    private String trans = "Transmission";
+    private ArrayList<Car> cars;
+    private ArrayList<Car> carsInTable = new ArrayList<>();
 
-    public boolean validateCarTrim(Car...car) {
-        String engine = "Engine";
-        String trans = "Transmission";
-        Car firstCarInTable = car[0];
-        Car secondCarInTable = car[1];
-        ComparisonTable table = new ComparisonTable();
+    public boolean carTrimIsSame(Car...cars) {
+        this.cars = new ArrayList<>(Arrays.asList(cars));
 
-        firstCarInTable.setTrim(table.getTableAttributes(1, engine, trans));
+        setCarsTrims();
 
-        secondCarInTable.setTrim(table.getTableAttributes(2, engine, trans));
-
-        return car[0].equals(firstCarInTable) && car[1].equals(secondCarInTable);
+        for (int i = 0; i < this.cars.size(); i++) {
+            if (!this.cars.get(i).equals(carsInTable.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public Car getRandCarInfo(MainForm mainForm) {
-        Car car = getRandCarWithTrims(mainForm);
+    private void setCarsTrims() {
+        ComparisonTable table = new ComparisonTable();
+
+        Iterator<Car> iterator = cars.iterator();
+        while(iterator.hasNext()){
+            carsInTable.add(iterator.next().clone());
+        }
+
+        for (int i = 0; i < carsInTable.size(); i++) {
+            carsInTable.get(i).setTrim(table.getTableAttributes(i + 1, engine, trans));
+        }
+    }
+
+    public Car getRandCarInfo() {
+        mainForm = new MainForm();
+        Car car = getRandCarWithTrims();
 
         carPage.goToTrims();
         trimPage = new TrimPage();
@@ -37,7 +59,7 @@ public class Steps {
         return car;
     }
 
-    private Car getRandCarWithTrims(MainForm mainForm) {
+    private Car getRandCarWithTrims() {
         Car car = null;
         boolean hasTrim = false;
         while (!hasTrim) {
