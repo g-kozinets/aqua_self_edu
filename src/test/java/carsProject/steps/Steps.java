@@ -1,6 +1,6 @@
-package carsProject.tests;
+package carsProject.steps;
 
-import carsProject.models.CarSpecs;
+import carsProject.models.Car;
 import carsProject.pages.*;
 import org.testng.Assert;
 
@@ -9,11 +9,11 @@ public class Steps {
     private CarPage carPage;
     private TrimPage trimPage;
 
-    public boolean validateCarTrim(CarSpecs...car) {
+    public boolean validateCarTrim(Car...car) {
         String engine = "Engine";
         String trans = "Transmission";
-        CarSpecs firstCarInTable = car[0];
-        CarSpecs secondCarInTable = car[1];
+        Car firstCarInTable = car[0];
+        Car secondCarInTable = car[1];
         ComparisonTable table = new ComparisonTable();
 
         firstCarInTable.setTrim(table.getTableAttributes(1, engine, trans));
@@ -23,29 +23,29 @@ public class Steps {
         return car[0].equals(firstCarInTable) && car[1].equals(secondCarInTable);
     }
 
-    public CarSpecs getRandCarInfo(MainForm mainForm) {
-        CarSpecs carSpecs = getRandCarWithTrims(mainForm);
+    public Car getRandCarInfo(MainForm mainForm) {
+        Car car = getRandCarWithTrims(mainForm);
 
         carPage.goToTrims();
         trimPage = new TrimPage();
 
         Assert.assertTrue(trimPage.isOnThePage(), "Not on trims page: ");
 
-        carSpecs.setEngine(trimPage.getEngineModel());
-        carSpecs.setTransmission(trimPage.getTransmissionModel());
+        car.setEngine(trimPage.getEngineModel());
+        car.setTransmission(trimPage.getTransmissionModel());
 
-        return carSpecs;
+        return car;
     }
 
-    private CarSpecs getRandCarWithTrims(MainForm mainForm) {
-        CarSpecs carSpecs = null;
+    private Car getRandCarWithTrims(MainForm mainForm) {
+        Car car = null;
         boolean hasTrim = false;
         while (!hasTrim) {
             mainForm.goToResearch();
             ResearchPage researchPage = new ResearchPage();
-            carSpecs = researchPage.getRandomCar();
+            car = researchPage.getRandomCar();
 
-            Assert.assertEquals(researchPage.getChosenParam(), carSpecs.getFullName(), "Incorrect selection in combobox");
+            Assert.assertEquals(researchPage.getChosenParam(), car.getFullName(), "Incorrect selection in combobox");
 
             researchPage.doSearch();
             carPage = new CarPage();
@@ -54,6 +54,6 @@ public class Steps {
 
             hasTrim = carPage.checkTrims();
         }
-        return carSpecs;
+        return car;
     }
 }

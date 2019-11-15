@@ -1,25 +1,27 @@
 package carsProject.pages;
 
-import carsProject.customElements.TrimCard;
+import framework.pageElements.Text;
 import org.openqa.selenium.By;
 import static framework.logger.MyLogger.log;
 
 public class TrimPage extends BaseForm{
 
-    private TrimCard trimCard = new TrimCard(By.className("trim-card"), "Trim card");
+    private Text engine = new Text(By.xpath("//div[@class='trim-details']/div[@class='trim-card']/div[4]"), "Engine info");
+    private Text transmission = new Text(By.xpath("//div[@class='trim-details']/div[@class='trim-card']/div[5]"), "Transmission info");
+
 
     public TrimPage() {
-        uniqueElement = trimCard;
+        uniqueElement = engine;
     }
 
     public String getEngineModel() {
         log.info("Getting engine model");
-        return trimCard.getEngine();
+        return engine.getText();
     }
 
     public String getTransmissionModel() {
-        log.info("Getting transmission");
-        return trimCard.getTransmission();
+        log.info("Getting transmission model");
+        return transmission.getText();
     }
 
 }

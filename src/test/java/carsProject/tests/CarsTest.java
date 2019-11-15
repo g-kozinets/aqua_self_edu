@@ -1,18 +1,17 @@
 package carsProject.tests;
 
 import carsProject.pages.*;
-import carsProject.models.CarSpecs;
+import carsProject.models.Car;
+import carsProject.steps.Steps;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.util.ArrayList;
 
 public class CarsTest extends BaseTest {
 
     private MainForm mainForm;
     private ResearchPage researchPage;
-    private CarSpecs firstCar;
-    private CarSpecs secondCar;
+    private Car firstCar;
+    private Car secondCar;
 
     @Test
     public void categoryTest() {

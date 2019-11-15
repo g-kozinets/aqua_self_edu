@@ -3,7 +3,7 @@ package carsProject.pages;
 import framework.driver.Browser;
 import framework.pageElements.Button;
 import framework.pageElements.DropDownList;
-import carsProject.models.CarSpecs;
+import carsProject.models.Car;
 import framework.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,7 +25,7 @@ public class ComparePage extends MainForm{
         uniqueElement = startComparingBtn;
     }
 
-    public void initiateCarComparison(CarSpecs car) {
+    public void initiateCarComparison(Car car) {
         log.info("Adding first car to compare");
         makersList.selectItem(car.getMaker());
         modelsList.selectItem(car.getModel());
@@ -37,7 +37,7 @@ public class ComparePage extends MainForm{
         startComparingBtn.click();
     }
 
-    public void addCarToCompare(CarSpecs car) {
+    public void addCarToCompare(Car car) {
         log.info("Adding another car for comparison");
         new Button(ADD_CAR_LOCATOR, "Add another car").click();
 

@@ -2,14 +2,14 @@ package carsProject.models;
 
 import java.util.ArrayList;
 
-public class CarSpecs extends BaseModel {
+public class Car extends BaseModel {
     private String maker;
     private String model;
     private int year;
     private String engine;
     private String transmission;
 
-    public CarSpecs(String maker, String model, int year) {
+    public Car(String maker, String model, int year) {
         this.maker = maker;
         this.model = model;
         this.year = year;
@@ -24,12 +24,12 @@ public class CarSpecs extends BaseModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CarSpecs carSpecs = (CarSpecs) o;
-        return year == carSpecs.year &&
-                maker.equals(carSpecs.maker) &&
-                model.equals(carSpecs.model) &&
-                engine.equals(carSpecs.engine) &&
-                transmission.equals(carSpecs.transmission);
+        Car car = (Car) o;
+        return year == car.year &&
+                maker.equals(car.maker) &&
+                model.equals(car.model) &&
+                engine.equals(car.engine) &&
+                transmission.equals(car.transmission);
     }
 
     public String getFullName() {
