@@ -20,7 +20,6 @@ public abstract class BaseElement {
     }
 
     public void waitAndClick() {
-
         webElement = Waiters.clickableWaiter(locator);
         webElement.click();
     }

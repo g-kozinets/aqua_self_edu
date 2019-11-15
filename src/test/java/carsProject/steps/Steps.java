@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class Steps {
-
     private CarPage carPage;
     private TrimPage trimPage;
     private MainForm mainForm;

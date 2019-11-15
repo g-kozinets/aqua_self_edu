@@ -14,7 +14,6 @@ import java.util.List;
 public class CsvUtils {
     private static String FILE = PropertyReader.getProp("OutputFilePath");
 
-
     public static void writeCsvList(ArrayList<String> data) throws Exception {
         try (ICsvListWriter listWriter = new CsvListWriter(new FileWriter(FILE),
                 CsvPreference.STANDARD_PREFERENCE)) {
@@ -28,7 +27,6 @@ public class CsvUtils {
             for (String datum : data) {
                 listWriter.write(datum);
             }
-
         }
     }
 

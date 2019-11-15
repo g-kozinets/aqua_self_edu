@@ -20,7 +20,6 @@ public class CarsTest extends BaseTest {
         //Загрузка главной страницы
         Assert.assertTrue(mainForm.isOnThePage());
 
-
         mainForm.goToResearch();
         researchPage = new ResearchPage();
         Assert.assertTrue(researchPage.isOnThePage(), "Not on research page");

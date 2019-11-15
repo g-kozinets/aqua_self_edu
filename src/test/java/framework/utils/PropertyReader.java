@@ -13,7 +13,6 @@ public class PropertyReader {
         try {
             fis = new FileInputStream("config.properties");
             property.load(fis);
-
             propertyValue = property.getProperty(propName);
 
         } catch (

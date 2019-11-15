@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import static framework.logger.MyLogger.log;
 
 public class ComparePage extends MainForm{
-
     private DropDownList makersList = new DropDownList(By.id("make-dropdown"), "List of makers");
     private DropDownList modelsList = new DropDownList(By.id("model-dropdown"), "List of models");
     private DropDownList yearsList = new DropDownList(By.id("year-dropdown"), "List of years");
@@ -39,9 +38,8 @@ public class ComparePage extends MainForm{
 
     public void addCarToCompare(Car car) {
         log.info("Adding another car for comparison");
+
         new Button(ADD_CAR_LOCATOR, "Add another car").click();
-
-
         new DropDownList(By.id("make-dropdown"), "List of makers").selectItem(car.getMaker());
         new DropDownList(By.id("model-dropdown"), "List of models").selectItem(car.getModel());
         new DropDownList(By.id("year-dropdown"), "List of years").selectItem(Integer.toString(car.getYear()));

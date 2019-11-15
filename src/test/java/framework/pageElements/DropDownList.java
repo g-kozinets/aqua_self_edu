@@ -1,5 +1,6 @@
 package framework.pageElements;
 
+import framework.utils.TestUtils;
 import framework.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,10 @@ public class DropDownList extends BaseElement{
 
     public void selectItem(String itemName) {
         select.selectByVisibleText(itemName);
+    }
+
+    public void selectRandomItem() {
+        selectItem((String) TestUtils.getRandomElement(getOptionsInString()));
     }
 
     public String getSelectedOption() {
