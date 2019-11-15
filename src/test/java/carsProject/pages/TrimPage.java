@@ -8,6 +8,7 @@ public class TrimPage extends BaseForm{
     private Text engine = new Text(By.xpath("//div[@class='trim-details']/div[@class='trim-card']/div[4]"), "Engine info");
     private Text transmission = new Text(By.xpath("//div[@class='trim-details']/div[@class='trim-card']/div[5]"), "Transmission info");
 
+
     public TrimPage() {
         uniqueElement = engine;
     }

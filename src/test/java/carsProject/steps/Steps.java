@@ -39,7 +39,8 @@ public class Steps {
         }
 
         for (int i = 0; i < carsInTable.size(); i++) {
-            carsInTable.get(i).setTrim(table.getTableAttributes(i + 1, engine, trans));
+            carsInTable.get(i).setEngine(table.getTableAttributes(i + 1, engine).get(0));
+            carsInTable.get(i).setTransmission(table.getTableAttributes(i + 1, trans).get(0));
         }
     }
 

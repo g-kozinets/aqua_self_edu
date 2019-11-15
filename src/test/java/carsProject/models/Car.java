@@ -15,11 +15,6 @@ public class Car extends BaseModel implements Cloneable {
         this.year = year;
     }
 
-    public void setTrim(ArrayList<String> trim) {
-        setEngine(trim.get(0));
-        setTransmission(trim.get(1));
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

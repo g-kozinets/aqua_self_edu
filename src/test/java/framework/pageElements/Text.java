@@ -9,6 +9,6 @@ public class Text extends BaseElement {
     }
 
     public String getText(){
-        return Browser.getDriver().findElement(locator).getAttribute("innerText");
+        return Browser.getDriver().findElement(locator).getText();
     }
 }
