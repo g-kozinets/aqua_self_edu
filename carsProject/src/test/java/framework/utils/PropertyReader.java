@@ -11,7 +11,7 @@ public class PropertyReader {
     public static String getProp(String propName) {
         String propertyValue = new String();
         try {
-            fis = new FileInputStream("./carsProject/config.properties");
+            fis = new FileInputStream("./src/test/resources/config.properties");
             property.load(fis);
             propertyValue = property.getProperty(propName);
 

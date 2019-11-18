@@ -2,7 +2,7 @@ package project.pages;
 
 import framework.pageElements.Button;
 import org.openqa.selenium.By;
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 
 public class MainForm extends BaseForm {
     private Button mainPageBtn = new Button(By.id("//*[@id='cars-com-logo']"), "Main page button");
@@ -14,12 +14,12 @@ public class MainForm extends BaseForm {
     }
 
     public void goToMainPage() {
-        log.info("Going to main page");
+        logger.debug("Going to main page");
         mainPageBtn.click();
     }
 
     public void goToResearch() {
-        log.info("Going to research");
+        logger.debug("Going to research");
         researchBtn.waitAndClick();
     }
 }

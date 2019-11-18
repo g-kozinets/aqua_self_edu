@@ -4,7 +4,7 @@ import framework.pageElements.Button;
 import framework.pageElements.Text;
 import org.openqa.selenium.By;
 
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 
 public class CarPage extends MainForm{
 
@@ -20,7 +20,7 @@ public class CarPage extends MainForm{
     }
 
     public void goToTrims() {
-        log.info("Going to trims");
+        logger.debug("Going to trims");
         trimsBtn.waitAndClick();
     }
 }

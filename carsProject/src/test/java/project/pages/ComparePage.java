@@ -7,7 +7,7 @@ import project.models.Car;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 
 public class ComparePage extends MainForm{
     private DropDownList makersList = new DropDownList(By.id("make-dropdown"), "List of makers");
@@ -23,19 +23,19 @@ public class ComparePage extends MainForm{
     }
 
     public void initiateCarComparison(Car car) {
-        log.info("Adding first car to compare");
+        logger.debug("Adding first car to compare");
         makersList.selectItem(car.getMaker());
         modelsList.selectItem(car.getModel());
         yearsList.selectItem(Integer.toString(car.getYear()));
     }
 
     public void startComparing() {
-        log.info("Starting to compare");
+        logger.debug("Starting to compare");
         startComparingBtn.click();
     }
 
     public void addCarToCompare(Car car) {
-        log.info("Adding another car for comparison");
+        logger.debug("Adding another car for comparison");
 
         new Button(ADD_CAR_LOCATOR, "Add another car").click();
         addAnotherForm = new AddAnotherForm();
@@ -43,7 +43,7 @@ public class ComparePage extends MainForm{
     }
 
     public ArrayList<String> getCarNames() {
-        log.info("Getting car names from comparison");
+        logger.debug("Getting car names from comparison");
         ArrayList<WebElement> carNames = (ArrayList<WebElement>) Browser.getDriver().findElements(CAR_NAME_LOCATOR);
         ArrayList<String> carNamesString = new ArrayList<>();
 

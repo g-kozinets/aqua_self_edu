@@ -4,7 +4,7 @@ import framework.utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 
 public class Browser {
     private static WebDriver driver;
@@ -28,32 +28,32 @@ public class Browser {
     }
 
     public static void goToUrl(String url) {
-        log.info("Loading url: " + url);
+        logger.debug("Loading url: " + url);
         driver.get(url);
     }
 
     public static void closeBrowser() {
-        log.info("Closing browser");
+        logger.debug("Closing browser");
         driver.quit();
     }
 
     public static void refreshPage() {
-        log.info("Refreshing page");
+        logger.debug("Refreshing page");
         driver.navigate().refresh();
     }
 
     public static void selectTab(int tabNumber) {
-        log.info("Switching to tab №: " + tabNumber);
+        logger.debug("Switching to tab №: " + tabNumber);
         driver.switchTo().window(new ArrayList<>(driver.getWindowHandles()).get(tabNumber));
     }
 
     public static void saveTabName() {
-        log.info("Saving current tab name");
+        logger.debug("Saving current tab name");
         previousTab = driver.getWindowHandle();
     }
 
     public static void goToPreviousTab() {
-        log.info("Going to previous tab");
+        logger.debug("Going to previous tab");
         driver.switchTo().window(previousTab);
     }
 }

@@ -6,7 +6,7 @@ import project.models.Car;
 import framework.pageElements.DropDownList;
 import org.openqa.selenium.By;
 
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 
 public class ResearchPage extends MainForm {
     private Button mainPageBtn = new Button(By.className("global-nav__logo"), "Main page button");
@@ -23,12 +23,12 @@ public class ResearchPage extends MainForm {
 
     @Override
     public void goToMainPage() {
-        log.info("Going to main page");
+        logger.debug("Going to main page");
         mainPageBtn.click();
     }
 
     public Car getRandomCar() {
-        log.info("Getting random car");
+        logger.debug("Getting random car");
 
         CarParameter[] parameters = CarParameter.values();
         for (CarParameter param : parameters) {
@@ -46,12 +46,12 @@ public class ResearchPage extends MainForm {
     }
 
     public String getChosenParam() {
-        log.info("Getting chosen parameters");
+        logger.debug("Getting chosen parameters");
         return String.format("%s %s %s", yearsDrpDwnLst.getSelectedOption(), makersDrpDwnLst.getSelectedOption(), modelsDrpDwnLst.getSelectedOption());
     }
 
     public void doSearch() {
-        log.info("Clicking search");
+        logger.debug("Clicking search");
         searchBtn.click();
     }
 

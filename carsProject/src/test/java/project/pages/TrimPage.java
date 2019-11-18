@@ -4,7 +4,7 @@ import framework.pageElements.Text;
 import framework.utils.TestUtils;
 import org.openqa.selenium.By;
 
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 
 public class TrimPage extends BaseForm{
     private Text trimTitleTxt = new Text(By.className("trim-header__title"), "Trim header");
@@ -20,14 +20,14 @@ public class TrimPage extends BaseForm{
     }
 
     public String getEngineModel() {
-        log.info("Getting engine model");
+        logger.debug("Getting engine model");
 
         index = getColumnNumber(engineHeader);
         return new Text(By.xpath(String.format(CELL_TAG, index)), "Engine info").getText();
     }
 
     public String getTransmissionModel() {
-        log.info("Getting transmission model");
+        logger.debug("Getting transmission model");
 
         index = getColumnNumber(transmissionHeader);
         return new Text(By.xpath(String.format(CELL_TAG, index)), "Engine info").getText();

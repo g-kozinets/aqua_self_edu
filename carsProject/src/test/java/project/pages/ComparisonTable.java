@@ -1,6 +1,6 @@
 package project.pages;
 
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 import framework.pageElements.Button;
 import framework.pageElements.Text;
 import org.openqa.selenium.By;
@@ -17,7 +17,7 @@ public class ComparisonTable extends MainForm {
     }
 
     public ArrayList<String> getTableAttributes(int carNumber, String... attribute) {
-        log.info("Getting attribute info from table");
+        logger.debug("Getting attribute info from table");
         ArrayList<String> trimArr = new ArrayList<String>();
 
         for (int i = 0; i < attribute.length; i++) {

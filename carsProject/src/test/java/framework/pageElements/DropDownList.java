@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-import static framework.logger.MyLogger.log;
+import static framework.logger.MyLogger.logger;
 
 public class DropDownList extends BaseElement{
     public DropDownList(By locator, String elementName) {
@@ -35,7 +35,7 @@ public class DropDownList extends BaseElement{
     }
 
     public ArrayList getOptionsInString() {
-        log.info("Getting list of options from dropdown");
+        logger.debug("Getting list of options from dropdown");
         ArrayList<String> listString = new ArrayList<>();
 
         for (WebElement item : select.getOptions()) {
