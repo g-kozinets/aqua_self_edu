@@ -1,6 +1,6 @@
 package carsProject.models;
 
-public class Car extends BaseModel implements Cloneable {
+public class Car implements Cloneable {
     private String maker;
     private String model;
     private int year;

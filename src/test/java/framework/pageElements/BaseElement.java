@@ -18,7 +18,6 @@ public abstract class BaseElement {
     public BaseElement(By locator, String elementName) {
         this.locator = locator;
         this.elementName = elementName;
-        webElement = Browser.getDriver().findElement(locator);
     }
 
     public void waitAndClick() {

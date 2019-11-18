@@ -1,26 +1,42 @@
 package carsProject.pages;
 
 import framework.pageElements.Text;
+import framework.utils.TestUtils;
 import org.openqa.selenium.By;
+
+import java.lang.ref.PhantomReference;
+
 import static framework.logger.MyLogger.log;
 
 public class TrimPage extends BaseForm{
-    private Text engine = new Text(By.xpath("//div[@class='trim-details']/div[@class='trim-card']/div[4]"), "Engine info");
-    private Text transmission = new Text(By.xpath("//div[@class='trim-details']/div[@class='trim-card']/div[5]"), "Transmission info");
+    private Text trimTitle = new Text(By.className("trim-header__title"), "Trim header");
+    private static String TABLE_HEADER_TAG = "(//*[@id='labels-row'])[1]/div[contains(@class, 'cell') and text()='%s']/preceding-sibling::*";
+    private static String CELL_TAG = "//div[@class='trim-details']/div[@class='trim-card']/div[%s]";
+    private String engineHeader = "Engine";
+    private String transmissionHeader = "Trans";
+    private int index;
 
 
     public TrimPage() {
-        uniqueElement = engine;
+        uniqueElement = trimTitle;
     }
 
     public String getEngineModel() {
         log.info("Getting engine model");
-        return engine.getText();
+
+        index = getColumnNumber(engineHeader);
+        return new Text(By.xpath(String.format(CELL_TAG, index)), "Engine info").getText();
     }
 
     public String getTransmissionModel() {
         log.info("Getting transmission model");
-        return transmission.getText();
+
+        index = getColumnNumber(transmissionHeader);
+        return new Text(By.xpath(String.format(CELL_TAG, index)), "Engine info").getText();
+    }
+
+    private int getColumnNumber(String columnName) {
+       return TestUtils.getTagPosition(By.xpath(String.format(TABLE_HEADER_TAG, columnName)));
     }
 
 }

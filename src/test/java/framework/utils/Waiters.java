@@ -41,8 +41,8 @@ public class Waiters {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public static void invisibilityWaiter(WebElement webElement) {
+    public static void invisibilityWaiter(By by) {
         Wait<WebDriver> wait = new WebDriverWait(driver, timeOut);
-        wait.until(ExpectedConditions.invisibilityOf(webElement));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 }
