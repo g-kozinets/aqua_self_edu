@@ -1,7 +1,7 @@
-package carsProject.steps;
+package project.steps;
 
-import carsProject.models.Car;
-import carsProject.pages.*;
+import project.models.Car;
+import project.pages.*;
 import org.testng.Assert;
 
 import java.util.ArrayList;

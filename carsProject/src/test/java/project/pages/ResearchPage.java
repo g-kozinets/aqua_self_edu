@@ -1,8 +1,8 @@
-package carsProject.pages;
+package project.pages;
 
-import carsProject.enums.CarParameter;
+import project.enums.CarParameter;
 import framework.pageElements.Button;
-import carsProject.models.Car;
+import project.models.Car;
 import framework.pageElements.DropDownList;
 import org.openqa.selenium.By;
 

@@ -1,4 +1,4 @@
-package carsProject.enums;
+package project.enums;
 
 public enum CarParameter {
     MAKER("makeId"),

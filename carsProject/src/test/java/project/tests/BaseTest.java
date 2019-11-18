@@ -1,4 +1,4 @@
-package carsProject.tests;
+package project.tests;
 
 import framework.driver.Browser;
 import framework.utils.PropertyReader;

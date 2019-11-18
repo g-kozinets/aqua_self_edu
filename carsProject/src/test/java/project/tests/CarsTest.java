@@ -1,8 +1,8 @@
-package carsProject.tests;
+package project.tests;
 
-import carsProject.pages.*;
-import carsProject.models.Car;
-import carsProject.steps.Steps;
+import project.pages.*;
+import project.models.Car;
+import project.steps.Steps;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -17,7 +17,6 @@ public class CarsTest extends BaseTest {
     public void categoryTest() {
         mainForm = new MainForm();
 
-        //Загрузка главной страницы
         Assert.assertTrue(mainForm.isOnThePage());
 
         mainForm.goToResearch();

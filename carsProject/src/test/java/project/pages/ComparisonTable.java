@@ -1,4 +1,4 @@
-package carsProject.pages;
+package project.pages;
 
 import static framework.logger.MyLogger.log;
 import framework.pageElements.Button;

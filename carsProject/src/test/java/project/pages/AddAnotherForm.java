@@ -1,6 +1,6 @@
-package carsProject.pages;
+package project.pages;
 
-import carsProject.models.Car;
+import project.models.Car;
 import framework.pageElements.Button;
 import framework.pageElements.DropDownList;
 import framework.utils.Waiters;

@@ -1,4 +1,4 @@
-package carsProject.pages;
+package project.pages;
 
 import framework.pageElements.Button;
 import framework.pageElements.Text;

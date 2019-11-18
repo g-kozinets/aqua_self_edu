@@ -1,9 +1,9 @@
-package carsProject.pages;
+package project.pages;
 
 import framework.driver.Browser;
 import framework.pageElements.Button;
 import framework.pageElements.DropDownList;
-import carsProject.models.Car;
+import project.models.Car;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;

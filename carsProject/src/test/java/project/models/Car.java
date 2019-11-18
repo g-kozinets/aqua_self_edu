@@ -1,4 +1,4 @@
-package carsProject.models;
+package project.models;
 
 public class Car implements Cloneable {
     private String maker;
