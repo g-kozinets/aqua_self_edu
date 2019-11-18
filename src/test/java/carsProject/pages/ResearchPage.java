@@ -1,6 +1,6 @@
 package carsProject.pages;
 
-import carsProject.enums.CarParameters;
+import carsProject.enums.CarParameter;
 import framework.pageElements.Button;
 import carsProject.models.Car;
 import framework.pageElements.DropDownList;
@@ -30,8 +30,8 @@ public class ResearchPage extends MainForm {
     public Car getRandomCar() {
         log.info("Getting random car");
 
-        CarParameters[] parameters = CarParameters.values();
-        for (CarParameters param : parameters) {
+        CarParameter[] parameters = CarParameter.values();
+        for (CarParameter param : parameters) {
             selectByParameter(param);
         }
         return new Car(
@@ -40,7 +40,7 @@ public class ResearchPage extends MainForm {
                 Integer.parseInt(yearsDrpDwnLst.getSelectedOption()));
     }
 
-    public void selectByParameter(CarParameters parameter) {
+    public void selectByParameter(CarParameter parameter) {
         DropDownList dropDown = new DropDownList(By.xpath(String.format(UNIVERSAL_DROPDOWN_TAG, parameter.getId())), "Dropdown list");
         dropDown.selectRandomItem();
     }
