@@ -16,7 +16,6 @@ public class ComparePage extends MainForm{
     private Button startComparingBtn = new Button(By.xpath("//button[@class='done-button']"), "Start Comparing");
     private static final By ADD_CAR_LOCATOR = By.className("add-car-icon");
     private static final By CAR_NAME_LOCATOR = By.className("listing-name");
-    private AddAnotherForm addAnotherForm;
 
     public ComparePage() {
         uniqueElement = startComparingBtn;
@@ -34,12 +33,10 @@ public class ComparePage extends MainForm{
         startComparingBtn.click();
     }
 
-    public void addCarToCompare(Car car) {
+    public void clickAddCar() {
         logger.debug("Adding another car for comparison");
 
         new Button(ADD_CAR_LOCATOR, "Add another car").click();
-        addAnotherForm = new AddAnotherForm();
-        addAnotherForm.addCarToCompare(car);
     }
 
     public ArrayList<String> getCarNames() {

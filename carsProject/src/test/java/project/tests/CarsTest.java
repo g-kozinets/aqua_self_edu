@@ -14,6 +14,7 @@ public class CarsTest extends BaseTest {
     private ResearchPage researchPage;
     private Car firstCar;
     private Car secondCar;
+    private AddAnotherForm addAnotherForm;
 
     @Test
     public void categoryTest() {
@@ -53,7 +54,9 @@ public class CarsTest extends BaseTest {
         Assert.assertEquals(comparePage.getCarNames().get(0), firstCar.getFullName(), "First car name in comparison doesn't match");
 
         logger.info("Adding second car to comparison");
-        comparePage.addCarToCompare(secondCar);
+        comparePage.clickAddCar();
+        addAnotherForm = new AddAnotherForm();
+        addAnotherForm.addCarToCompare(secondCar);
         Assert.assertEquals(comparePage.getCarNames().get(1), secondCar.getFullName(), "Second car name in comparison doesn't match");
 
         Assert.assertTrue(new Steps().carTrimIsSame(firstCar, secondCar), "Trims in compare table doesn't match");
