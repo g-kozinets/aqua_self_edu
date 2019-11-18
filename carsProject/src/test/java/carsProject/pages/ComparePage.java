@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import static framework.logger.MyLogger.log;
 
 public class ComparePage extends MainForm{
-    private DropDownList makersList = new DropDownList(By.id("make-dropdown"), "List of makers");
-    private DropDownList modelsList = new DropDownList(By.id("model-dropdown"), "List of models");
-    private DropDownList yearsList = new DropDownList(By.id("year-dropdown"), "List of years");
-    private Button startComparingBtn = new Button(By.xpath("//button[@class='done-button']"), "Start Comparing");
-    private static By ADD_CAR_LOCATOR = By.className("add-car-icon");
-    private static By CAR_NAME_LOCATOR = By.className("listing-name");
-    private AddAnotherForm addAnotherForm = new AddAnotherForm();
+    private final DropDownList makersList = new DropDownList(By.id("make-dropdown"), "List of makers");
+    private final DropDownList modelsList = new DropDownList(By.id("model-dropdown"), "List of models");
+    private final DropDownList yearsList = new DropDownList(By.id("year-dropdown"), "List of years");
+    private final Button startComparingBtn = new Button(By.xpath("//button[@class='done-button']"), "Start Comparing");
+    private static final By ADD_CAR_LOCATOR = By.className("add-car-icon");
+    private static final By CAR_NAME_LOCATOR = By.className("listing-name");
+    private final AddAnotherForm addAnotherForm = new AddAnotherForm();
 
     public ComparePage() {
         uniqueElement = startComparingBtn;
@@ -41,10 +41,10 @@ public class ComparePage extends MainForm{
         addAnotherForm.addCarToCompare(car);
     }
 
-    public ArrayList getCarNames() {
+    public ArrayList<String> getCarNames() {
         log.info("Getting car names from comparison");
-        ArrayList<WebElement> carNames = (ArrayList) Browser.getDriver().findElements(CAR_NAME_LOCATOR);
-        ArrayList carNamesString = new ArrayList();
+        ArrayList<WebElement> carNames = (ArrayList<WebElement>) Browser.getDriver().findElements(CAR_NAME_LOCATOR);
+        ArrayList<String> carNamesString = new ArrayList<>();
 
         for (WebElement name: carNames) {
             carNamesString.add(name.getText());

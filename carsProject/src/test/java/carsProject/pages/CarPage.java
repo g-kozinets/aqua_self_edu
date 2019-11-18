@@ -8,11 +8,11 @@ import static framework.logger.MyLogger.log;
 
 public class CarPage extends MainForm{
 
-    private Button trimsBtn = new Button(By.xpath("//a[@data-linkname='trim-compare']"), "Trims button");
-    private Text price = new Text(By.className("header-info__row-price"), "Car price");
+    private final Button trimsBtn = new Button(By.xpath("//a[@data-linkname='trim-compare']"), "Trims button");
+    private final Text priceTxt = new Text(By.className("header-info__row-price"), "Car price");
 
     public CarPage() {
-        uniqueElement = price;
+        uniqueElement = priceTxt;
     }
 
     public Boolean checkTrims() {

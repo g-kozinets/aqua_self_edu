@@ -10,15 +10,10 @@ public class ComparisonTable extends MainForm {
     private static final String HEADER_TAG = "//cars-compare-compare-info[@header='%s']";
     private static final String INFO_TAG = "//span[contains(@class, 'info-data')][%s]//p[contains(@ng-repeat, 'listItem')]";
     private Button lastCarImgBtn = new Button(By.xpath("//*[@id='image-header']/span[contains(@class, 'info-data')][last()]"), "Last car image");
-    private String indexAttribute = "index";
     private Text tableText;
 
     public ComparisonTable() {
         uniqueElement = lastCarImgBtn;
-    }
-
-    public int getNumberOfCars() {
-        return Integer.parseInt(lastCarImgBtn.getAttribute(indexAttribute));
     }
 
     public ArrayList<String> getTableAttributes(int carNumber, String... attribute) {

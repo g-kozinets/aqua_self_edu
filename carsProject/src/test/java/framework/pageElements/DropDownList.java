@@ -4,7 +4,8 @@ import framework.utils.TestUtils;
 import framework.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;;
+import org.openqa.selenium.support.ui.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 

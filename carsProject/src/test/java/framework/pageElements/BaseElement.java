@@ -1,6 +1,5 @@
 package framework.pageElements;
 
-import carsProject.pages.BaseForm;
 import framework.driver.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
