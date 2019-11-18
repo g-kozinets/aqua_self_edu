@@ -1,8 +1,8 @@
 package project.tests;
 
 import framework.driver.Browser;
+import framework.logger.MyLogger;
 import framework.utils.PropertyReader;
-import org.apache.log4j.BasicConfigurator;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -10,8 +10,7 @@ public abstract class BaseTest {
 
     @BeforeTest
     public void setupTest() throws Exception {
-        BasicConfigurator.configure();
-        org.apache.log4j.Logger.getRootLogger().setLevel(org.apache.log4j.Level.INFO);
+        MyLogger.setupLogger();
         Browser.setupBrowser(PropertyReader.getProp("Browser"));
         Browser.goToUrl(PropertyReader.getProp("URL"));
     }
