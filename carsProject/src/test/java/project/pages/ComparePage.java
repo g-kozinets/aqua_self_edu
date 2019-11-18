@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import static framework.logger.MyLogger.log;
 
 public class ComparePage extends MainForm{
-    private final DropDownList makersList = new DropDownList(By.id("make-dropdown"), "List of makers");
-    private final DropDownList modelsList = new DropDownList(By.id("model-dropdown"), "List of models");
-    private final DropDownList yearsList = new DropDownList(By.id("year-dropdown"), "List of years");
-    private final Button startComparingBtn = new Button(By.xpath("//button[@class='done-button']"), "Start Comparing");
+    private DropDownList makersList = new DropDownList(By.id("make-dropdown"), "List of makers");
+    private DropDownList modelsList = new DropDownList(By.id("model-dropdown"), "List of models");
+    private DropDownList yearsList = new DropDownList(By.id("year-dropdown"), "List of years");
+    private Button startComparingBtn = new Button(By.xpath("//button[@class='done-button']"), "Start Comparing");
     private static final By ADD_CAR_LOCATOR = By.className("add-car-icon");
     private static final By CAR_NAME_LOCATOR = By.className("listing-name");
-    private final AddAnotherForm addAnotherForm = new AddAnotherForm();
+    private AddAnotherForm addAnotherForm;
 
     public ComparePage() {
         uniqueElement = startComparingBtn;
@@ -38,6 +38,7 @@ public class ComparePage extends MainForm{
         log.info("Adding another car for comparison");
 
         new Button(ADD_CAR_LOCATOR, "Add another car").click();
+        addAnotherForm = new AddAnotherForm();
         addAnotherForm.addCarToCompare(car);
     }
 

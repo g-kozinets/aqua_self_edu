@@ -9,16 +9,19 @@ import org.openqa.selenium.By;
 import static framework.logger.MyLogger.log;
 
 public class AddAnotherForm extends BaseForm{
-    private static final By ADD_ANOTHER_LOCATOR = By.className("modal-button");
+    private DropDownList makerDrpDwnLst = new DropDownList(By.id("make-dropdown"), "List of makers");
+    private DropDownList modelDrpDwnLst = new DropDownList(By.id("model-dropdown"), "List of models");
+    private DropDownList yearDrpDwnLst = new DropDownList(By.id("year-dropdown"), "List of years");
+    private static final Button addAnotherBtn = new Button(By.className("modal-button"), "Add another car button");
     private static final By SPINNER_LOCATOR = By.id("spinner");
 
    public void addCarToCompare(Car car) {
         log.info("Adding another car for comparison");
 
-        new DropDownList(By.id("make-dropdown"), "List of makers").selectItem(car.getMaker());
-        new DropDownList(By.id("model-dropdown"), "List of models").selectItem(car.getModel());
-        new DropDownList(By.id("year-dropdown"), "List of years").selectItem(Integer.toString(car.getYear()));
-        new Button(ADD_ANOTHER_LOCATOR, "Add another car button").click();
+        makerDrpDwnLst.selectItem(car.getMaker());
+        modelDrpDwnLst.selectItem(car.getModel());
+        yearDrpDwnLst.selectItem(Integer.toString(car.getYear()));
+        addAnotherBtn.click();
         Waiters.invisibilityWaiter(SPINNER_LOCATOR);
     }
 }
