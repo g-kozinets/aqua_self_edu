@@ -1,7 +1,5 @@
 package carsProject.models;
 
-import java.util.ArrayList;
-
 public class Car extends BaseModel implements Cloneable {
     private String maker;
     private String model;

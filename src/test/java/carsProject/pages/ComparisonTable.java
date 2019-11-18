@@ -1,10 +1,8 @@
 package carsProject.pages;
 
-import framework.driver.Browser;
 import static framework.logger.MyLogger.log;
 import framework.pageElements.Button;
 import framework.pageElements.Text;
-import framework.utils.TestUtils;
 import org.openqa.selenium.By;
 import java.util.ArrayList;
 

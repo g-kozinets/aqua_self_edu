@@ -17,7 +17,6 @@ public class ComparePage extends MainForm{
     private Button startComparingBtn = new Button(By.xpath("//button[@class='done-button']"), "Start Comparing");
     private static By ADD_CAR_LOCATOR = By.className("add-car-icon");
     private static By ADD_ANOTHER_LOCATOR = By.className("modal-button");
-    private static By TABLE_LOCATOR = By.className("compare-categories");
     private static By CAR_NAME_LOCATOR = By.className("listing-name");
 
     public ComparePage() {
