@@ -18,7 +18,7 @@ public class ComparisonTable extends MainForm {
     }
 
     public int getNumberOfCars() {
-        return (int) lastCarImgBtn.getAttribute(indexAttribute);
+        return Integer.parseInt(lastCarImgBtn.getAttribute(indexAttribute));
     }
 
     public ArrayList<String> getTableAttributes(int carNumber, String... attribute) {

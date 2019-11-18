@@ -8,7 +8,6 @@ public class MainForm extends BaseForm {
     private Button mainPageBtn = new Button(By.id("//*[@id='cars-com-logo']"), "Main page button");
     private Button mobileAppBtn = new Button(By.xpath("//a[@data-linkname='mobile-app']"), "App button");
     private Button researchBtn = new Button(By.xpath("//nav/ul/li/a[@data-linkname='header-research']"), "Research button");
-    protected By spinner = By.id("spinner");
 
     public MainForm() {
         uniqueElement = mobileAppBtn ;

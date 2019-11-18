@@ -1,5 +1,6 @@
 package framework.pageElements;
 
+import carsProject.pages.BaseForm;
 import framework.driver.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ public abstract class BaseElement {
     public BaseElement(By locator, String elementName) {
         this.locator = locator;
         this.elementName = elementName;
+        webElement = Browser.getDriver().findElement(locator);
     }
 
     public void waitAndClick() {
@@ -24,7 +26,7 @@ public abstract class BaseElement {
         webElement.click();
     }
 
-    public Object getAttribute(String attributeName) {
+    public String getAttribute(String attributeName) {
        return webElement.getAttribute(attributeName);
     }
 
