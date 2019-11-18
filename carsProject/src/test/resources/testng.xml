@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test  verbose="2" preserve-order="true" name="/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/cars_com_test">
+    <test  verbose="2" preserve-order="true" name="cars_com_test">
         <classes>
             <class name="project.tests.CarsTest" />
         </classes>
