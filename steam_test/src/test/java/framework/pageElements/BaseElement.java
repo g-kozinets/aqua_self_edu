@@ -4,6 +4,7 @@ import framework.driver.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import framework.utils.Waiters;
+import org.openqa.selenium.interactions.Actions;
 
 public abstract class BaseElement {
 
@@ -19,6 +20,11 @@ public abstract class BaseElement {
     public void waitAndClick() {
         webElement = Waiters.clickableWaiter(locator);
         webElement.click();
+    }
+
+    public void moveCursorHere() {
+        webElement = Waiters.visibilityWaiter(locator);
+        new Actions(Browser.getDriver()).moveToElement(webElement).build().perform();
     }
 
     public String getAttribute(String attributeName) {

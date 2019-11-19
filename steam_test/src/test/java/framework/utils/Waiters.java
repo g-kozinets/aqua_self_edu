@@ -31,9 +31,9 @@ public class Waiters {
         return webElement;
     }
 
-    public static void visibilityWaiter(By locator) {
+    public static WebElement visibilityWaiter(By locator) {
         Wait<WebDriver> wait = new WebDriverWait(driver, timeOut);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public static WebElement clickableWaiter(By locator) {

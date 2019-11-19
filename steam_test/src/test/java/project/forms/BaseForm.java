@@ -1,4 +1,4 @@
-package project.pages;
+package project.forms;
 
 import framework.pageElements.BaseElement;
 

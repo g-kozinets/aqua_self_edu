@@ -1,7 +1,6 @@
 package project.tests;
 
-import framework.utils.FileUtils;
-import project.pages.*;
+import project.forms.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -37,7 +36,8 @@ public class SteamTest extends BaseTest {
         mainForm = new MainForm();
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 
-
-
+        mainForm.goToGameGenre();
+        IndieGamesForm indieForm = new IndieGamesForm();
+        Assert.assertTrue(indieForm.isOnThePage());
     }
 }
