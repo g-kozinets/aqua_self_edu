@@ -2,7 +2,12 @@ package framework.driver;
 
 import framework.utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static framework.logger.MyLogger.logger;
 
@@ -22,6 +27,8 @@ public class Browser {
         driver = getInstance(browserName);
         driver.manage().timeouts().implicitlyWait(Integer.parseInt(PropertyReader.getProp("WaitTime")), SECONDS);
     }
+
+
 
     public static WebDriver getDriver() {
         return driver;

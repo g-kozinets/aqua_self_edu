@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 public class Waiters {
 
-    private static int timeOut = Integer.parseInt(PropertyReader.getProp("WaitTime"));
+    protected static int timeOut = Integer.parseInt(PropertyReader.getProp("WaitTime"));
     private static WebDriver driver = Browser.getDriver();
 
     public static WebElement fluentWaiter(By locator) {
