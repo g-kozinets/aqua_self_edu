@@ -1,6 +1,7 @@
 package project.models;
 
 import java.util.Comparator;
+import static framework.utils.TestUtils.convertToInt;
 
 public class Game {
     private String name;
@@ -16,7 +17,7 @@ public class Game {
     }
 
 
-    public Comparator<Game> byDiscount = new Comparator<Game>() {
+    public static Comparator<Game> byDiscount = new Comparator<Game>() {
 
         public int compare(Game g1, Game g2) {
             int discount1 = convertToInt(g1.getDiscount());
@@ -28,10 +29,6 @@ public class Game {
             /*For descending order*/
             //rollno2-rollno1;
         }};
-
-    private int convertToInt(String string) {
-        return Integer.parseInt(string.replaceAll("\\D+", ""));
-    }
 
     public String getName() {
         return name;

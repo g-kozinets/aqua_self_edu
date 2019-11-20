@@ -18,4 +18,8 @@ public class TestUtils {
     public static int getTagPosition(By by) {
         return Browser.getDriver().findElements(by).size() + 1;
     }
+
+    public static int convertToInt(String string) {
+        return Integer.parseInt(string.replaceAll("\\D+", ""));
+    }
 }

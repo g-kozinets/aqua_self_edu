@@ -1,9 +1,11 @@
 package project.tests;
 
 import project.enums.SortBy;
+import project.enums.TableTab;
 import project.forms.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import project.models.Game;
 
 import java.io.IOException;
 
@@ -41,7 +43,8 @@ public class SteamTest extends BaseTest {
         IndieGamesForm indieForm = new IndieGamesForm();
         Assert.assertTrue(indieForm.isOnThePage());
 
-        indieForm.getDiscountedGames();
-        indieForm.getDiscountedGameBy(SortBy.MIN);
+        indieForm.selectTab(TableTab.TOP_SELLERS);
+        Game game = indieForm.getDiscountedGame(SortBy.MIN);
+        indieForm.goToGame(game);
     }
 }
