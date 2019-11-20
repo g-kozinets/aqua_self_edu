@@ -1,5 +1,6 @@
 package project.tests;
 
+import framework.utils.FileUtils;
 import project.enums.SortBy;
 import project.enums.TableTab;
 import project.forms.*;
@@ -19,10 +20,7 @@ public class SteamTest extends BaseTest {
 
     @Test
     public void downloadInstallTest() throws IOException {
-
-        logger.info("Loading main page");
         mainForm = new MainForm();
-
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 
         mainForm.goToInstall();
@@ -31,7 +29,7 @@ public class SteamTest extends BaseTest {
 
         downloadForm.clickDownload();
         logger.info("Finishing test");
-        //FileUtils.clearOutput();
+        FileUtils.clearOutput();
     }
 
     @Test
@@ -51,6 +49,6 @@ public class SteamTest extends BaseTest {
         Game gameFromPage = gameForm.getGameOnForm();
         Assert.assertEquals(gameFromTable.getName(), gameFromPage.getName(), "Not on the right game page");
 
-        Assert.assertTrue(gameFromPage.equals(gameFromTable), "Game prices doesn't match");
+        Assert.assertEquals(gameFromTable, gameFromPage, "Game prices doesn't match");
     }
 }

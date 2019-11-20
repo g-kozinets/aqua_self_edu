@@ -28,7 +28,9 @@ public class Browser {
         driver.manage().timeouts().implicitlyWait(Integer.parseInt(PropertyReader.getProp("WaitTime")), SECONDS);
     }
 
-
+    public static void clearCookies() {
+        driver.manage().deleteAllCookies();
+    }
 
     public static WebDriver getDriver() {
         return driver;

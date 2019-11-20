@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class IndieGamesForm extends MainForm {
     private ArrayList<Game> games = new ArrayList<>();
     private String listId = "TopSellersRows";
-    private String gameItemInfoTag = String.format("//div[@id='%s']//div[@class='%s']", listId, "%s");
+    private String gameItemInfoTag = String.format("//div[@id='%s']//a[contains(@class, 'tab_item')][%s]", listId, "%s");
+    //private String gameItemInfoTag = String.format("//div[@id='%s']//div[not(contains(@class, 'no_discount')) and contains(@*, 'tab_item_discount')]//div[@class='%s']", listId, "%s");
     private Text genreHeader = new Text(By.xpath("// *[@class='pageheader' and contains(text(), 'Indie')]"), "Genre header");
     private Text gameName = new Text(By.xpath(String.format(gameItemInfoTag, "tab_item_name")), "game name");
     private Text discount = new Text(By.xpath(String.format(gameItemInfoTag, "discount_pct")), "discount");
