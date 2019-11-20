@@ -1,6 +1,8 @@
 package project.models;
 
 import java.util.Comparator;
+import java.util.Objects;
+
 import static framework.utils.TestUtils.convertToInt;
 
 public class Game {
@@ -12,7 +14,7 @@ public class Game {
     public Game(String name, String originalPrice, String finalPrice, String discount) {
         this.name = name;
         this.originalPrice = originalPrice;
-        this.finalPrice = finalPrice;
+        this.finalPrice = finalPrice.replaceAll("[A-z\\s]+", "");
         this.discount = discount;
     }
 
@@ -29,6 +31,22 @@ public class Game {
             /*For descending order*/
             //rollno2-rollno1;
         }};
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return name.equals(game.name) &&
+                originalPrice.contains(game.originalPrice) &&
+                finalPrice.contains(game.finalPrice) &&
+                discount.contains(game.discount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, originalPrice, finalPrice, discount);
+    }
 
     public String getName() {
         return name;

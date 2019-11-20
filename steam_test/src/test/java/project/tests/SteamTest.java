@@ -48,9 +48,9 @@ public class SteamTest extends BaseTest {
         indieForm.goToGame(gameFromTable);
 
         GameForm gameForm = new GameForm();
-        Assert.assertTrue(gameForm.isOnThePage(), "Not on the page of the game");
-
         Game gameFromPage = gameForm.getGameOnForm();
-        Assert.assertEquals(gameFromTable.getName(), gameFromPage.getName(), "Game from table doesn't match with game from game page");
+        Assert.assertEquals(gameFromTable.getName(), gameFromPage.getName(), "Not on the right game page");
+
+        Assert.assertTrue(gameFromPage.equals(gameFromTable), "Game prices doesn't match");
     }
 }
