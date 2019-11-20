@@ -1,5 +1,6 @@
 package project.tests;
 
+import project.enums.SortBy;
 import project.forms.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -39,5 +40,8 @@ public class SteamTest extends BaseTest {
         mainForm.goToGameGenre();
         IndieGamesForm indieForm = new IndieGamesForm();
         Assert.assertTrue(indieForm.isOnThePage());
+
+        indieForm.getDiscountedGames();
+        indieForm.getDiscountedGameBy(SortBy.MIN);
     }
 }

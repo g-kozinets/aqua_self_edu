@@ -13,7 +13,7 @@ public class IndieGamesForm extends MainForm {
     private ArrayList<Game> games = new ArrayList<>();
     private String tabId = "tab_select_TopSellers";
     private String listId = "TopSellersRows";
-    private String gameItemInfoTag = String.format("//div[@id='%s']//div[@class='%s']", listId);
+    private String gameItemInfoTag = String.format("//div[@id='%s']//div[@class='%s']", listId, "%s");
     //private String tabListTag = "//div[@id='%s']// div[contains(@class, '%s')]";
     private Text genreHeader = new Text(By.xpath("// *[@class='pageheader' and contains(text(), 'Indie')]"), "Genre header");
     private Text gameName = new Text(By.xpath(String.format(gameItemInfoTag, "tab_item_name")), "game name");
@@ -28,7 +28,11 @@ public class IndieGamesForm extends MainForm {
         uniqueElement = genreHeader;
     }
 
-    public ArrayList getDiscountedGames() {
+    public void chooseTab (TableTab tab) {
+
+    }
+
+    public ArrayList<Game> getDiscountedGames() {
         for (int i = 0; i < discount.getAllElements().size(); i++) {
             games.add(new Game(
                     gameName.getAllElements().get(i).getText(),
@@ -39,11 +43,16 @@ public class IndieGamesForm extends MainForm {
         return games;
     }
 
-    public Game getDiscountedGameBy() {
-        SortBy sortBy = null;
+    public Game getDiscountedGameBy(SortBy sortBy) {
+        getDiscountedGames().sort(game.byDiscount);
 
         switch (sortBy) {
-
+            case MIN:
+                return game = games.get(0);
+            case MAX:
+                return game = games.get(games.size()-1);
+            default:
+                throw new IllegalStateException("Unexpected value: " + sortBy);
         }
     }
 
