@@ -37,6 +37,7 @@ public class IndieGamesForm extends MainForm {
         for (WebElement nameOnForm : gameNames) {
             if (nameOnForm.getText().equals(name)) {
                 nameOnForm.click();
+                break;
             }
         }
     }
