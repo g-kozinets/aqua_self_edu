@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import framework.utils.Waiters;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.ArrayList;
+
 public abstract class BaseElement {
 
     private WebElement webElement;
@@ -41,6 +43,10 @@ public abstract class BaseElement {
 
     public boolean isDisplayed() {
         return Browser.getDriver().findElements(locator).size() > 0;
+    }
+
+    public ArrayList<WebElement> getAllElements() {
+        return new ArrayList<>(Browser.getDriver().findElements(locator));
     }
 
 

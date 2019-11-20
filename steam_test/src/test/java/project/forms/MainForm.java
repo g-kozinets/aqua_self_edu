@@ -8,7 +8,7 @@ import static framework.logger.MyLogger.logger;
 public class MainForm extends BaseForm {
     private Button mainPageBtn = new Button(By.id("logo-holder"), "Main page button");
     private Button installSteamBtn = new Button(By.xpath("//div[contains(@class, 'header_installsteam_btn')] "), "Install button");
-    private Banner AdBanner = new Banner(By.xpath("//div[@class='fullscreen-bg'] "), "Advert banner");
+    private Banner AdBanner = new Banner(By.xpath("//div[@class='home_page_content']"), "Advert banner");
     private Button gamesTabBtn = new Button(By.id("genre_tab"), "Games tab");
     private Button listItemBtn = new Button(By.xpath("//a[@class='popup_menu_item' and contains(text(), 'Indie')]"), "list item");
 
