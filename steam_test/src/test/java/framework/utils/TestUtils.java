@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static framework.utils.Waiters.visibilityWaiter;
+
 public class TestUtils {
 
     public static Object getRandomElement(ArrayList list) {

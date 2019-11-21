@@ -1,5 +1,7 @@
 package project.models;
 
+import framework.pageElements.Text;
+
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -16,6 +18,13 @@ public class Game {
         this.originalPrice = originalPrice;
         this.finalPrice = finalPrice.replaceAll("[A-z\\s]+", "");
         this.discount = discount;
+    }
+
+    public Game(Text name, Text originalPrice, Text finalPrice, Text discount) {
+        this.name = name.getText();
+        this.originalPrice = originalPrice.getText();
+        this.finalPrice = finalPrice.getText().replaceAll("[A-z\\s]+", "");
+        this.discount = discount.getText();;
     }
 
 
