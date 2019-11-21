@@ -3,10 +3,7 @@ package project.tests;
 import framework.driver.Browser;
 import framework.logger.MyLogger;
 import framework.utils.PropertyReader;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import static framework.logger.MyLogger.logger;
 
@@ -16,7 +13,7 @@ public abstract class BaseTest {
     String tabName;
 
 
-    @BeforeTest
+    @BeforeSuite
     public void setupBrowser() throws Exception {
         logger.info("Setting up logger and browser");
         MyLogger.setupLogger();
@@ -35,7 +32,7 @@ public abstract class BaseTest {
         }
     }
 
-    @AfterTest
+    @AfterSuite
     public void closeBrowser() {
         Browser.closeBrowser();
     }

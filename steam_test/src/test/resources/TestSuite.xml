@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="testng">
+    <test  verbose="2" preserve-order="true" name="installTest">
+        <classes>
+            <class name="project.tests.DownloadInstallTest"/>
+        </classes>
+    </test>
+    <test  verbose="2" preserve-order="true" name="discountTest">
+        <classes>
+            <class name="project.tests.DiscountsTest"/>
+        </classes>
+    </test>
+</suite>
