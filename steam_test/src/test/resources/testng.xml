@@ -3,7 +3,8 @@
 <suite name="All Test Suite">
     <test  verbose="2" preserve-order="true" name="cars_com_test">
         <classes>
-            <class name="project.tests.SteamTest" />
+            <class name="project.tests.DownloadInstallTest" />
+            <class name="project.tests.DiscountsTest" />
         </classes>
     </test>
 </suite>
