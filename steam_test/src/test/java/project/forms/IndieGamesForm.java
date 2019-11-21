@@ -1,12 +1,10 @@
 package project.forms;
 
-import framework.pageElements.Button;
 import framework.pageElements.Text;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import project.enums.GameInfo;
 import project.enums.SortBy;
-import project.enums.TableTab;
 import project.models.Game;
 import java.util.ArrayList;
 import static project.enums.GameInfo.*;
@@ -17,13 +15,10 @@ public class IndieGamesForm extends MainForm {
     private String gameItemTag = "//div[@id='TopSellersRows']//a[contains(@class, 'tab_item')][%s]";
     private String ItemInfoTag = String.format(gameItemTag , "%s");
     private Text pageHeaderTxt = new Text(By.xpath("//*[@class='pageheader']"), "Page header");
+    public TabsForm tabsForm = new TabsForm();
 
     public IndieGamesForm() {
         uniqueElement = pageHeaderTxt;
-    }
-
-    public void selectTab(TableTab tab) {
-        new Button(By.id(tab.getId()), "tab button").click();
     }
 
     private Text getInfoByGameIndex(Object index, GameInfo info) {

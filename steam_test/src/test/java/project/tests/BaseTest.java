@@ -13,6 +13,7 @@ import static framework.logger.MyLogger.logger;
 public abstract class BaseTest {
     String language;
     String genreName;
+    String tabName;
 
 
     @BeforeTest
@@ -25,10 +26,12 @@ public abstract class BaseTest {
         if (lang.equals("rus")) {
             language = "Русский";
             genreName = "Инди";
+            tabName = "Лидеры продаж";
         }
         if (lang.equals("eng")) {
             language = "English";
             genreName = "Indie";
+            tabName = "Top Selling";
         }
     }
 

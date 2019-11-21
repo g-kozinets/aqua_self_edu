@@ -13,7 +13,7 @@ public class DownloadForm extends BaseForm{
         uniqueElement = downloadBtn;
     }
 
-    public void clickDownload() throws IOException {
+    public void clickDownload() {
         downloadBtn.click();
         FileUtils.waitForFileDownload();
     }

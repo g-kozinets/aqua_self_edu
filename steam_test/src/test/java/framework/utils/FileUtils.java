@@ -2,13 +2,11 @@ package framework.utils;
 
 import framework.driver.Browser;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -35,7 +33,7 @@ public class FileUtils {
 
     }
 
-    public static void clearOutput() throws IOException {
+    public static void clearOutput() {
         File fileToCheck = downloadsDirectory
                 .resolve(expectedFileName)
                 .toFile();

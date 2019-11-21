@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import framework.utils.Waiters;
 import org.openqa.selenium.interactions.Actions;
-
 import java.util.ArrayList;
 
 public abstract class BaseElement {

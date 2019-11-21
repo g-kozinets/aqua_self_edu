@@ -3,11 +3,8 @@ package project.forms;
 import framework.pageElements.Banner;
 import framework.pageElements.Button;
 import framework.pageElements.CustomSelect;
-import framework.pageElements.SelectElement;
 import framework.utils.Waiters;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 
 import static framework.logger.MyLogger.logger;
 
