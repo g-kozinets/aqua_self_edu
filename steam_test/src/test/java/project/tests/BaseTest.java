@@ -14,12 +14,14 @@ public abstract class BaseTest {
 
     @BeforeTest
     public void setupBrowser() throws Exception {
+        logger.info("Setting up logger and browser");
         MyLogger.setupLogger();
         Browser.setupBrowser(PropertyReader.getProp("Browser"));
     }
 
     @AfterTest
     public void closeBrowser() {
+        logger.info("Closing Browser");
         Browser.closeBrowser();
     }
 
@@ -31,6 +33,7 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void clearBrowser() {
+        logger.info("Clearing Browser cookies");
         Browser.clearCookies();
     }
 }

@@ -7,15 +7,14 @@ import project.forms.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import project.models.Game;
-
 import java.io.IOException;
-
 import static framework.logger.MyLogger.logger;
 
 
 public class SteamTest extends BaseTest {
 
     private MainForm mainForm;
+    private IndieGamesForm indieForm;
     private DownloadForm downloadForm;
 
     @Test
@@ -38,7 +37,7 @@ public class SteamTest extends BaseTest {
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 
         mainForm.goToGameGenre();
-        IndieGamesForm indieForm = new IndieGamesForm();
+        indieForm = new IndieGamesForm();
         Assert.assertTrue(indieForm.isOnThePage());
 
         indieForm.selectTab(TableTab.TOP_SELLERS);

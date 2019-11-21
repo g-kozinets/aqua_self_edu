@@ -2,7 +2,6 @@ package project.forms;
 
 import framework.pageElements.Button;
 import framework.pageElements.Text;
-import framework.utils.TestUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import project.enums.GameInfo;
@@ -19,20 +18,10 @@ public class IndieGamesForm extends MainForm {
     private String listId = "TopSellersRows";
     private String gameItemTag = String.format("//div[@id='%s']//a[contains(@class, 'tab_item')][%s]", listId, "%s");
     private String gameInfoTag = String.format(gameItemTag , "%s");
-    ////div[@id='TopSellersRows']//a[contains(@class, 'tab_item')][1]//div[@class='discount_pct']
-    //private String gameItemInfoTag = String.format("//div[@id='%s']//div[not(contains(@class, 'no_discount')) and contains(@*, 'tab_item_discount')]//div[@class='%s']", listId, "%s");
-    private Text gameInfoTxt;
-    private Text genreHeader = new Text(By.xpath("// *[@class='pageheader' and contains(text(), 'Indie')]"), "Genre header");
-//    private Text gameName = new Text(By.xpath(String.format(gameItemInfoTag, tagIndex) + "//div[@class='discount_pct']"), "game name");
-//    private Text discount = new Text(By.xpath(String.format(gameItemInfoTag, tagIndex)), "discount");
-//    private Text finalPrice = new Text(By.xpath(String.format(gameItemInfoTag, tagIndex)), "final price");
-//    private Text originalPrice = new Text(By.xpath(String.format(gameItemInfoTag, tagIndex)), "original price");
-
-
-
+    private Text pageHeaderTxt = new Text(By.xpath("//*[@class='pageheader' and contains(text(), 'Indie')]"), "Page header");
 
     public IndieGamesForm() {
-        uniqueElement = genreHeader;
+        uniqueElement = pageHeaderTxt;
     }
 
     public void selectTab(TableTab tab) {
@@ -40,7 +29,7 @@ public class IndieGamesForm extends MainForm {
     }
 
     private Text getInfoByGameIndex(Object index, GameInfo info) {
-        return gameInfoTxt = new Text(By.xpath(String.format(gameInfoTag, index) + info.getTag()), "");
+        return new Text(By.xpath(String.format(gameInfoTag, index) + info.getTag()), "");
     }
 
     public void goToGame(Game game) {
