@@ -1,6 +1,7 @@
 package project.tests;
 
 import framework.utils.FileUtils;
+import framework.utils.PropertyReader;
 import project.enums.SortBy;
 import project.enums.TableTab;
 import project.forms.*;
@@ -22,6 +23,8 @@ public class SteamTest extends BaseTest {
         mainForm = new MainForm();
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 
+        mainForm.selectLanguage(language);
+
         mainForm.goToInstall();
         downloadForm = new DownloadForm();
         Assert.assertTrue(downloadForm.isOnThePage(), "Not on download page");
@@ -36,9 +39,11 @@ public class SteamTest extends BaseTest {
         mainForm = new MainForm();
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 
-        mainForm.goToGameGenre();
+        mainForm.selectLanguage(language);
+
+        mainForm.menuForm.selectGenre(genreName);
         indieForm = new IndieGamesForm();
-        Assert.assertTrue(indieForm.isOnThePage());
+        Assert.assertTrue(indieForm.isOnThePage(), "Not on game genre page");
 
         indieForm.selectTab(TableTab.TOP_SELLERS);
         Game gameFromTable = indieForm.getDiscountedGame(SortBy.MIN);

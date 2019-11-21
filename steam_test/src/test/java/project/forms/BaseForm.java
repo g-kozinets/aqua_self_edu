@@ -8,5 +8,4 @@ public abstract class BaseForm {
     public boolean isOnThePage() {
         return this.uniqueElement.isDisplayed();
     }
-
 }

@@ -14,9 +14,9 @@ import static project.enums.GameInfo.*;
 public class IndieGamesForm extends MainForm {
     private ArrayList<Game> games = new ArrayList<>();
     private String listId = "TopSellersRows";
-    private String gameItemTag = String.format("//div[@id='%s']//a[contains(@class, 'tab_item')][%s]", listId, "%s");
+    private String gameItemTag = "//div[@id='TopSellersRows']//a[contains(@class, 'tab_item')][%s]";
     private String ItemInfoTag = String.format(gameItemTag , "%s");
-    private Text pageHeaderTxt = new Text(By.xpath("//*[@class='pageheader' and contains(text(), 'Indie')]"), "Page header");
+    private Text pageHeaderTxt = new Text(By.xpath("//*[@class='pageheader']"), "Page header");
 
     public IndieGamesForm() {
         uniqueElement = pageHeaderTxt;

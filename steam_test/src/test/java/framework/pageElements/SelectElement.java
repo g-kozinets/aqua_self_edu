@@ -11,8 +11,8 @@ import java.util.List;
 
 import static framework.logger.MyLogger.logger;
 
-public class DropDownList extends BaseElement{
-    public DropDownList(By locator, String elementName) {
+public class SelectElement extends BaseElement{
+    public SelectElement(By locator, String elementName) {
         super(locator, elementName);
     }
 

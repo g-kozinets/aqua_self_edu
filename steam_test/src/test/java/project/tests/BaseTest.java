@@ -11,23 +11,34 @@ import org.testng.annotations.BeforeTest;
 import static framework.logger.MyLogger.logger;
 
 public abstract class BaseTest {
+    String language;
+    String genreName;
+
 
     @BeforeTest
     public void setupBrowser() throws Exception {
         logger.info("Setting up logger and browser");
         MyLogger.setupLogger();
         Browser.setupBrowser(PropertyReader.getProp("Browser"));
+        String lang = PropertyReader.getProp("Lang");
+
+        if (lang.equals("rus")) {
+            language = "Русский";
+            genreName = "Инди";
+        }
+        if (lang.equals("eng")) {
+            language = "English";
+            genreName = "Indie";
+        }
     }
 
     @AfterTest
     public void closeBrowser() {
-        logger.info("Closing Browser");
         Browser.closeBrowser();
     }
 
     @BeforeMethod
     public void setupTest() {
-        logger.info("Loading URL:" + PropertyReader.getProp("URL"));
         Browser.goToUrl(PropertyReader.getProp("URL"));
     }
 
