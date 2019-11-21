@@ -8,16 +8,14 @@ import project.enums.GameInfo;
 import project.enums.SortBy;
 import project.enums.TableTab;
 import project.models.Game;
-
 import java.util.ArrayList;
-
 import static project.enums.GameInfo.*;
 
 public class IndieGamesForm extends MainForm {
     private ArrayList<Game> games = new ArrayList<>();
     private String listId = "TopSellersRows";
     private String gameItemTag = String.format("//div[@id='%s']//a[contains(@class, 'tab_item')][%s]", listId, "%s");
-    private String gameInfoTag = String.format(gameItemTag , "%s");
+    private String ItemInfoTag = String.format(gameItemTag , "%s");
     private Text pageHeaderTxt = new Text(By.xpath("//*[@class='pageheader' and contains(text(), 'Indie')]"), "Page header");
 
     public IndieGamesForm() {
@@ -29,7 +27,7 @@ public class IndieGamesForm extends MainForm {
     }
 
     private Text getInfoByGameIndex(Object index, GameInfo info) {
-        return new Text(By.xpath(String.format(gameInfoTag, index) + info.getTag()), "");
+        return new Text(By.xpath(String.format(ItemInfoTag, index) + info.getTag()), "");
     }
 
     public void goToGame(Game game) {
