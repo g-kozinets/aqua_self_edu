@@ -14,7 +14,7 @@ import static framework.logger.MyLogger.logger;
 public abstract class BaseTest {
     Dictionary dictionary;
     TableTab tab = TableTab.TOP_SELLERS;
-    Genre genre = Genre.ACTION;
+    Genre genre = Genre.INDIE;
 
 
     @BeforeSuite
