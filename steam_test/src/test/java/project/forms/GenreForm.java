@@ -10,15 +10,18 @@ import project.models.Game;
 import java.util.ArrayList;
 import static project.enums.GameInfo.*;
 
-public class IndieGamesForm extends MainForm {
+public class GenreForm extends MainForm {
     private ArrayList<Game> games = new ArrayList<>();
     private String listId = "TopSellersRows";
     private String gameItemTag = "//div[@id='TopSellersRows']//a[contains(@class, 'tab_item')][%s]";
     private String ItemInfoTag = String.format(gameItemTag , "%s");
     private Text pageHeaderTxt = new Text(By.xpath("//*[@class='pageheader']"), "Page header");
 
-    public IndieGamesForm() {
+    public GenreForm() {
         uniqueElement = pageHeaderTxt;
+    }
+    public String getGenreHeader() {
+        return pageHeaderTxt.getText();
     }
 
     public TabsForm tabs () {

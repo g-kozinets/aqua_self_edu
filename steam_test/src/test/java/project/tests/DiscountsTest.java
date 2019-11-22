@@ -12,7 +12,7 @@ import static framework.logger.MyLogger.logger;
 public class DiscountsTest extends BaseTest {
 
     private MainForm mainForm;
-    private IndieGamesForm indieForm;
+    private GenreForm genreForm;
 
     @Test
     public void discountsTest() {
@@ -24,18 +24,19 @@ public class DiscountsTest extends BaseTest {
 
         logger.info("Selecting genre");
         mainForm.menu().selectGenre(dictionary.getGenreName());
-        indieForm = new IndieGamesForm();
-        Assert.assertTrue(indieForm.isOnThePage(), "Not on game genre page");
+        genreForm = new GenreForm();
+        Assert.assertTrue(genreForm.isOnThePage(), "Not on game genre page");
+        Assert.assertTrue(genreForm.getGenreHeader().contains(dictionary.getGenreName()), "Not on correct genre page");
 
         logger.info("Selecting tab");
-        indieForm.tabs().selectTab(TableTab.TOP_SELLERS);
-        Assert.assertEquals(indieForm.tabs().getSelectedTab(), dictionary.getTabName(), "Selected wrong tab");
+        genreForm.tabs().selectTab(TableTab.TOP_SELLERS);
+        Assert.assertEquals(genreForm.tabs().getSelectedTab(), dictionary.getTabName(), "Selected wrong tab");
 
         logger.info("Getting game on sale");
-        Game gameFromTable = indieForm.getDiscountedGame(SortBy.MIN);
+        Game gameFromTable = genreForm.getDiscountedGame(SortBy.MIN);
 
         logger.info("Going to game page");
-        indieForm.goToGame(gameFromTable);
+        genreForm.goToGame(gameFromTable);
         GameForm gameForm = new GameForm();
         Game gameFromPage = gameForm.getGameOnForm();
         Assert.assertEquals(gameFromTable.getName(), gameFromPage.getName(), "Not on the right game page");
