@@ -5,6 +5,7 @@ import framework.pageElements.Button;
 import framework.pageElements.CustomSelect;
 import framework.utils.Waiters;
 import org.openqa.selenium.By;
+import project.forms.menu.MenuForm;
 
 import static framework.logger.MyLogger.logger;
 
@@ -16,7 +17,6 @@ public class MainForm extends BaseForm {
     private By overlayLocator = By.className("newmodal_background");
     private By optionLocator = By.xpath("//div[@id='language_dropdown']/div/*[contains(@class, 'popup_menu_item')]");
     private CustomSelect languageSelect;
-    public MenuForm menuForm = new MenuForm();
 
     public MainForm() {
         uniqueElement = AdBanner ;
@@ -27,14 +27,16 @@ public class MainForm extends BaseForm {
         mainPageBtn.click();
     }
 
+    public MenuForm menu() {
+        return new MenuForm();
+    }
+
     public void selectLanguage(String lang) {
         languageBtn.click();
         languageSelect = new CustomSelect(optionLocator, "Language dropdown");
         languageSelect.selectByText(lang);
         Waiters.invisibilityWaiter(overlayLocator);
     }
-
-
 
     public void goToInstall() {
         logger.debug("Going to install Steam");

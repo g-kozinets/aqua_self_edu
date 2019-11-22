@@ -4,11 +4,7 @@ import framework.utils.FileUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import project.forms.DownloadForm;
-import project.forms.IndieGamesForm;
 import project.forms.MainForm;
-
-import java.io.IOException;
-
 import static framework.logger.MyLogger.logger;
 
 public class DownloadInstallTest extends BaseTest{
@@ -16,7 +12,7 @@ public class DownloadInstallTest extends BaseTest{
     private DownloadForm downloadForm;
 
     @Test
-    public void downloadInstallTest() throws IOException {
+    public void downloadInstallTest() {
         mainForm = new MainForm();
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 

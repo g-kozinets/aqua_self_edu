@@ -23,13 +23,13 @@ public class DiscountsTest extends BaseTest {
         mainForm.selectLanguage(language);
 
         logger.info("Selecting genre");
-        mainForm.menuForm.selectGenre(genreName);
+        mainForm.menu().selectGenre(genreName);
         indieForm = new IndieGamesForm();
         Assert.assertTrue(indieForm.isOnThePage(), "Not on game genre page");
 
         logger.info("Selecting tab");
-        indieForm.tabsForm.selectTab(TableTab.TOP_SELLERS);
-        Assert.assertEquals(indieForm.tabsForm.getSelectedTab(), tabName, "Selected wrong tab");
+        indieForm.tabs().selectTab(TableTab.TOP_SELLERS);
+        Assert.assertEquals(indieForm.tabs().getSelectedTab(), tabName, "Selected wrong tab");
 
         logger.info("Getting game on sale");
         Game gameFromTable = indieForm.getDiscountedGame(SortBy.MIN);

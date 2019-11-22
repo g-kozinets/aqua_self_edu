@@ -4,7 +4,6 @@ import framework.driver.Browser;
 import framework.logger.MyLogger;
 import framework.utils.PropertyReader;
 import org.testng.annotations.*;
-
 import static framework.logger.MyLogger.logger;
 
 public abstract class BaseTest {
@@ -18,6 +17,16 @@ public abstract class BaseTest {
         logger.info("Setting up logger and browser");
         MyLogger.setupLogger();
         Browser.setupBrowser(PropertyReader.getProp("Browser"));
+
+    }
+
+    @AfterSuite
+    public void closeBrowser() {
+        Browser.closeBrowser();
+    }
+
+    @BeforeMethod
+    public void setupTest() {
         String lang = PropertyReader.getProp("Lang");
 
         if (lang.equals("rus")) {
@@ -30,15 +39,6 @@ public abstract class BaseTest {
             genreName = "Indie";
             tabName = "Top Selling";
         }
-    }
-
-    @AfterSuite
-    public void closeBrowser() {
-        Browser.closeBrowser();
-    }
-
-    @BeforeMethod
-    public void setupTest() {
         Browser.goToUrl(PropertyReader.getProp("URL"));
     }
 
