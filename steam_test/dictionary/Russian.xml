@@ -2,8 +2,8 @@
     <language>Русский</language>
     <genreName>
         <name name="indie">Инди</name>
-        <name name="Action">Экшен</name>
-        <name name="Adventure">Приключение</name>
+        <name name="action">Экшен</name>
+        <name name="adventure">Приключение</name>
     </genreName>
     <tabName>
         <name name="topSelling">Лидеры</name>
