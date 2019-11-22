@@ -1,0 +1,13 @@
+<dictionary>
+    <language>Русский</language>
+    <genreName>
+        <name name="indie">Инди</name>
+        <name name="Action">Экшен</name>
+        <name name="Adventure">Приключение</name>
+    </genreName>
+    <tabName>
+        <name name="topSelling">Лидеры</name>
+        <name name="new">Популярные новинки</name>
+        <name name="popular">Популярное</name>
+    </tabName>
+</dictionary>

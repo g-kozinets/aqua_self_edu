@@ -1,0 +1,13 @@
+<dictionary>
+    <language>English</language>
+    <genreName>
+        <name name="indie">Indie</name>
+        <name name="action">Action</name>
+        <name name="adventure">Adventure</name>
+    </genreName>
+    <tabName>
+        <name name="topSelling">Top Selling</name>
+        <name name="new">New and Trending</name>
+        <name name="popular">What's Popular</name>
+    </tabName>
+</dictionary>

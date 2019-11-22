@@ -17,7 +17,7 @@ public class DownloadInstallTest extends BaseTest{
         Assert.assertTrue(mainForm.isOnThePage(), "Not on main page");
 
         logger.info("Selecting language");
-        mainForm.selectLanguage(language);
+        mainForm.selectLanguage(dictionary.getLanguage());
 
         logger.info("Going to install page");
         mainForm.goToInstall();
