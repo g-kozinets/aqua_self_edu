@@ -13,6 +13,8 @@ import static framework.logger.MyLogger.logger;
 
 public abstract class BaseTest {
     Dictionary dictionary;
+    TableTab tab = TableTab.TOP_SELLERS;
+    Genre genre = Genre.INDIE;
 
 
     @BeforeSuite
@@ -31,7 +33,7 @@ public abstract class BaseTest {
     @BeforeMethod
     public void setupTest() throws Exception {
         String lang = PropertyReader.getProp("Lang");
-        dictionary = XmlReader.readDictionary(lang, TableTab.TOP_SELLERS, Genre.INDIE);
+        dictionary = XmlReader.readDictionary(lang, tab, genre);
         Browser.goToUrl(PropertyReader.getProp("URL"));
     }
 
