@@ -1,5 +1,7 @@
-/.idea/
-/target/
-/old pages/
-/carsProject/carsProject.iml
-/cars_com_test.iml
+# User-specific stuff:
+*.iml
+.idea
+.allure
+
+# mvn target folder
+target/
