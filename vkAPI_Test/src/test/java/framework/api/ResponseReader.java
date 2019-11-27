@@ -10,6 +10,10 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class ResponseReader {
+    public static void setJsonResponse(String jsonResponse) {
+        ResponseReader.jsonResponse = jsonResponse;
+    }
+
     private static String jsonResponse;
 
     public static String read(URLConnection con) throws IOException {
@@ -34,7 +38,12 @@ public class ResponseReader {
         return arrayList;
     }
 
-    public static Object getJsonField(String fieldName) throws IOException {
-        return new JSONObject(jsonResponse).get("fieldName");
+    public static JSONObject getResponse() throws IOException {
+        return new JSONObject(jsonResponse).getJSONObject("response");
+    }
+
+    public static JSONObject getField(String name) throws IOException {
+        return new JSONObject(jsonResponse).getJSONObject(name);
     }
 }
+

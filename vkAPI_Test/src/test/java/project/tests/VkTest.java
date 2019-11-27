@@ -1,17 +1,14 @@
 package project.tests;
 
 
-import framework.api.ResponseReader;
 import framework.api.VkApi;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.testng.Assert;
+import framework.api.multipart.MultipartUtility;
 import org.testng.annotations.Test;
-import project.enums.HttpMethod;
 import project.forms.MainFeedForm;
 import project.steps.LoginSteps;
+
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 import static project.enums.SideMenuId.MY_PROFILE;
@@ -30,10 +27,8 @@ public class VkTest extends BaseTest{
     }
 
     @Test
-    public void gson() {
-        String jsonString = "{\"response\":{\"count\":2,\"items\":[561155508,381108928]}}";
-        JSONObject request = new JSONObject(jsonString);
-        ArrayList zipCode = ResponseReader.convertJsonArrToArray(request.getJSONObject("response").getJSONArray("items"));
-        Assert.assertTrue(zipCode.contains(561155508));
+    public void gson() throws Exception {
+        int id = VkApi.sendWallPost("he110qweq");
+        VkApi.editPostPhoto(id, "/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/testng-template-project-develop/vkAPI_Test/TestPhoto/GitHub-Mark.png");
     }
 }
