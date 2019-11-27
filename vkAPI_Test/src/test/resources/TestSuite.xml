@@ -3,7 +3,7 @@
 <suite name="Test Suite" verbose="1">
     <test name="Contact Us page test">
         <classes>
-            <class name="project.tests.ContactUsTest"/>
+            <class name="project.tests.VkTest"/>
         </classes>
     </test>
 </suite>
