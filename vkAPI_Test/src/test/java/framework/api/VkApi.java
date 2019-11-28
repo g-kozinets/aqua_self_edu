@@ -14,12 +14,14 @@ import java.util.ArrayList;
 public class VkApi {
     private static String apiUrl = "https://api.vk.com/method/";
     private static String postMethod = "wall.post";
+    private static String deletePostMethod = "wall.delete";
     private static String editPostMethod = "wall.edit";
     private static String getPostMethod = "wall.getById";
     private static String addLikeMethod = "likes.add";
     private static String getLikeMethod = "likes.getList";
     private static String saveWallPhoto = "photos.saveWallPhoto";
     private static String getWallUploadServer = "photos.getWallUploadServer";
+    private static String sendCommentMethod = "wall.createComment";
     private static String token = "12a183dc275aa84e49f079e6a22381d2007660ed27a3b716151198fd1420d6123d2f7d9b5e924d89c726e";
     private static String apiVer = "5.103";
     private static int userId;
@@ -53,8 +55,19 @@ public class VkApi {
         return ResponseReader.getResponse().getInt("post_id");
     }
 
+    public static void deleteWallPost(int postId) throws IOException {
+        setNewParameters(deletePostMethod, "post_id=%s", Integer.toString(postId));
+        sendRequest();
+    }
+
+    public static int sendCommentToPost(int postId, String text) throws IOException {
+        setNewParameters(sendCommentMethod, "post_id=%s&message=%s", Integer.toString(postId), text);
+        sendRequest();
+        return ResponseReader.getResponse().getInt("comment_id");
+    }
+
     public static void addLikeToPost(int postId) throws IOException {
-        setNewParameters(addLikeMethod, "type=post&item_id=49030", Integer.toString(postId));
+        setNewParameters(addLikeMethod, "type=post&item_id=%s", Integer.toString(postId));
         sendRequest();
     }
 
