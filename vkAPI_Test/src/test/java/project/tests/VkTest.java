@@ -2,12 +2,9 @@ package project.tests;
 
 
 import framework.api.VkApi;
-import framework.api.multipart.MultipartUtility;
 import org.testng.annotations.Test;
 import project.forms.MainFeedForm;
 import project.steps.LoginSteps;
-
-import java.io.File;
 import java.io.IOException;
 
 
@@ -28,6 +25,7 @@ public class VkTest extends BaseTest{
 
     @Test
     public void gson() throws Exception {
+
         int id = VkApi.sendWallPost("he110qweq");
         VkApi.editPostPhoto(id, "/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/testng-template-project-develop/vkAPI_Test/TestPhoto/GitHub-Mark.png");
     }

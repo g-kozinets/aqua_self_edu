@@ -27,6 +27,7 @@ public class ResponseReader {
         jsonResponse = content.toString();
         in.close();
 
+        System.out.println(jsonResponse);
         return jsonResponse;
     }
 
@@ -42,8 +43,12 @@ public class ResponseReader {
         return new JSONObject(jsonResponse).getJSONObject("response");
     }
 
-    public static JSONObject getField(String name) throws IOException {
-        return new JSONObject(jsonResponse).getJSONObject(name);
+    public static JSONObject getJson() {
+        return new JSONObject(jsonResponse);
+    }
+
+    public static Object getField(String name) throws IOException {
+        return new JSONObject(jsonResponse).get(name);
     }
 }
 

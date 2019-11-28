@@ -1,6 +1,7 @@
 package framework.api;
 
 import framework.api.multipart.MultipartUtility;
+import io.qameta.allure.Step;
 import org.json.JSONArray;
 import org.testng.Assert;
 import project.enums.HttpMethod;
@@ -14,12 +15,14 @@ public class VkApi {
     private static String apiUrl = "https://api.vk.com/method/";
     private static String postMethod = "wall.post";
     private static String editPostMethod = "wall.edit";
+    private static String getPostMethod = "wall.getById";
     private static String addLikeMethod = "likes.add";
     private static String getLikeMethod = "likes.getList";
-    private static String saveWallPhoto = "saveWallPhoto";
+    private static String saveWallPhoto = "photos.saveWallPhoto";
     private static String getWallUploadServer = "photos.getWallUploadServer";
     private static String token = "12a183dc275aa84e49f079e6a22381d2007660ed27a3b716151198fd1420d6123d2f7d9b5e924d89c726e";
     private static String apiVer = "5.103";
+    private static int userId;
     private static HttpURLConnection con;
     private static String parameters = "";
 
@@ -64,7 +67,8 @@ public class VkApi {
 
     public static int editPostPhoto(int postId, String filePath) throws Exception {
         String attachment = uploadPhotoToWall(filePath);
-        setNewParameters(editPostMethod, "attachment=%s&post_id=%s", attachment, Integer.toString(postId));
+        String postText = getPostText(postId);
+        setNewParameters(editPostMethod, "attachment=%s&post_id=%s&message=%s", attachment, Integer.toString(postId), postText);
         sendRequest();
 
         return ResponseReader.getResponse().getInt("post_id");
@@ -75,17 +79,23 @@ public class VkApi {
         sendRequest();
         String serverUrl = ResponseReader.getResponse().getString("upload_url");
 
-        ResponseReader.setJsonResponse(MultipartUtility.sendFile(serverUrl, ".TestPhoto/GitHub-Mark.png"));
+        ResponseReader.setJsonResponse(MultipartUtility.sendFile(serverUrl, filePath));
         String serverId = ResponseReader.getField("server").toString();
         String photo = ResponseReader.getField("photo").toString();
         String hash = ResponseReader.getField("hash").toString();
 
         setNewParameters(saveWallPhoto, "photo=%s&server=%s&hash=%s", photo, serverId, hash);
         sendRequest();
-        String photoId = ResponseReader.getResponse().getString("id");
-        int ownerId = ResponseReader.getResponse().getInt("owner_id");
+        int photoId = ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getInt("id");
+        userId = ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getInt("owner_id");
 
-        return "photo" + ownerId + "_" + photoId;
+        return "photo" + userId + "_" + photoId;
+    }
+
+    public static String getPostText(int postId) throws IOException {
+        setNewParameters(getPostMethod, "posts=" + userId + "_%s&extended=0", Integer.toString(postId));
+        sendRequest();
+        return ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getString("text");
     }
 
     public static void addParameter(String parameter, String value) {
@@ -107,9 +117,7 @@ public class VkApi {
         parameters = String.format(paramFormat, values);
         addParameter("v", apiVer);
         addParameter("access_token", token);
-        String apiUrl = apiUrl + apiMethod;
-        //добавляется метод, поэтому неверный запрос для получения аплод сервера
-        setCon(apiUrl, HttpMethod.POST);
+        setCon(apiUrl + apiMethod, HttpMethod.POST);
     }
 
     private static void responseCodeHandler() throws IOException {
@@ -118,5 +126,4 @@ public class VkApi {
             Assert.fail("Bad response code: " + code);
         }
     }
-
 }
