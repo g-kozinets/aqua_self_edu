@@ -1,18 +1,18 @@
 package project.forms;
 
-import aquality.selenium.elements.interfaces.ITextBox;
+import aquality.selenium.elements.interfaces.IButton;
 import org.openqa.selenium.By;
 
 public class MyProfileForm extends BaseForm {
-    private String wallPostTextTag = "//div[contains(@id, 'wpt') and contains(@id, '%s')]/div";
-    private ITextBox postTextTxb;
+    private IButton profileBtn = getElementFactory().getButton(By.id("top_profile_link"), "profile button");
 
     public MyProfileForm() {
         super(By.id("profile_short"), "Profile");
     }
 
-    public String getPostTextById(int postId) {
-        postTextTxb = getElementFactory().getTextBox(By.xpath(String.format(wallPostTextTag, postId)), "post text");
-        return postTextTxb.getValue().toString();
+    public int getUserId() {
+        String href = profileBtn.getAttribute("href");
+        return Integer.parseInt(href.split("id")[1]);
     }
+
 }

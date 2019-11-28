@@ -49,6 +49,10 @@ public class VkApi {
         responseCodeHandler();
     }
 
+    public static int getUserId() {
+        return userId;
+    }
+
     public static int sendWallPost(String message) throws IOException {
         setNewParameters(postMethod, "message=%s", message);
         sendRequest();
