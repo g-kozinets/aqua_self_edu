@@ -41,7 +41,7 @@ public class VkTest extends BaseTest{
 
         postText = TextGenerator.generate(7);
         VkApi.editPostText(postId, postText);
-        VkApi.editPostPhoto(postId, "/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/testng-template-project-develop/vkAPI_Test/TestPhoto/GitHub-Mark.png");
+        VkApi.editPostPhoto(postId, "/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/testng-template-project-develop/vkAPI_Test/TestPhoto/GitHub-Mark.jpg");
         Assert.assertEquals(postForm.getPostText(), postText, "Edited post text doesn't match");
 
         VkApi.sendCommentToPost(postId, postComment);
@@ -53,6 +53,6 @@ public class VkTest extends BaseTest{
         Assert.assertTrue(arrayList.contains(userId));
 
         VkApi.deleteWallPost(postId);
-        Assert.assertFalse(postForm.isFormDisplayed(5L), "Post was not deleted");
+        Assert.assertFalse(postForm.isFormDisplayed(), "Post was not deleted");
     }
 }
