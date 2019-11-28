@@ -87,6 +87,13 @@ public class VkApi {
         return ResponseReader.getResponse().getInt("post_id");
     }
 
+    public static int editPostText(int postId, String postText) throws Exception {
+        setNewParameters(editPostMethod, "post_id=%s&message=%s", Integer.toString(postId), postText);
+        sendRequest();
+
+        return ResponseReader.getResponse().getInt("post_id");
+    }
+
     public static String uploadPhotoToWall(String filePath) throws Exception {
         setNewParameters(getWallUploadServer, "");
         sendRequest();
