@@ -2,6 +2,7 @@ package project.tests;
 
 
 import framework.api.VkApi;
+import framework.utils.TextGenerator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import project.forms.MainFeedForm;
@@ -22,20 +23,18 @@ public class VkTest extends BaseTest{
 
         mainFeedForm.selectOnSideMenu(MY_PROFILE);
 
-        int id = VkApi.sendWallPost("he110qweq");
+        int id = VkApi.sendWallPost(TextGenerator.generate(7));
         VkApi.addLikeToPost(id);
         VkApi.editPostPhoto(id, "/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/testng-template-project-develop/vkAPI_Test/TestPhoto/GitHub-Mark.png");
-        VkApi.sendCommentToPost(id, "lololol");
+        VkApi.sendCommentToPost(id, TextGenerator.generate(7));
         ArrayList arrayList = VkApi.getPostLikes(id);
         Assert.assertTrue(arrayList.contains(381108928));
         VkApi.deleteWallPost(id);
-
     }
 
     @Test
     public void gson() throws Exception {
         VkApi.deleteWallPost(49063);
-
     }
 
     @Test
