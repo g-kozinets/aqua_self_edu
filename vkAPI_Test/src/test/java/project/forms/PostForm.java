@@ -1,12 +1,11 @@
 package project.forms;
 
 import aquality.selenium.elements.interfaces.IButton;
-import aquality.selenium.elements.interfaces.IElement;
 import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
 
-public class PostForm extends Form {
+public class PostForm extends BaseForm {
     private String postTag = locator.toString().replaceAll("By.xpath:", "");
     private ITextBox wallPostTxb = getElementFactory().getTextBox(By.xpath(postTag + "//div[contains(@class, 'wall_post_text')]"), "post text");
     private IButton likeBtn = getElementFactory().getButton(By.xpath(postTag + "//a[contains(@class, ' like')]"), "like");

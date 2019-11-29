@@ -1,4 +1,4 @@
-package framework.api.multipart;
+package project.api.multipart;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -9,11 +9,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MultipartUtility {
     public static String sendFile(String uploadUrl, String imagepath) throws Exception {
