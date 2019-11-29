@@ -6,7 +6,7 @@ import project.enums.UrlParam;
 import java.util.HashMap;
 import java.util.Set;
 
-public class ParametersMap extends HashMap<String, Object> {
+public class ParametersMap {
     HashMap<String, Object> params = new HashMap<>();
 
     public ParametersMap() {

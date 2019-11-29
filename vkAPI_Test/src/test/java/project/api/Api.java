@@ -4,13 +4,13 @@ import org.testng.Assert;
 import project.api.data.ParametersMap;
 import project.enums.ApiMethod;
 import project.enums.HttpMethod;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Api {
+    protected static String apiUrl;
     private static ParametersMap baseParams = new ParametersMap();
     private static HttpURLConnection con;
     private static String parameters = "";
@@ -55,13 +55,15 @@ public class Api {
         parameters = "";
     }
 
-    protected static void setNewParameters(ApiMethod apiMethod, ParametersMap params) throws IOException {
+    protected static void sendNewParameters(ApiMethod apiMethod, ParametersMap params) throws IOException {
+        clearParameters();
         readParamsMap(params);
         readParamsMap(baseParams);
         setCon(apiUrl + apiMethod.getMethod(), HttpMethod.POST);
     }
 
-    protected static void setNewParameters(ApiMethod apiMethod) throws IOException {
+    protected static void sendNewParameters(ApiMethod apiMethod) throws IOException {
+        clearParameters();
         readParamsMap(baseParams);
         setCon(apiUrl + apiMethod.getMethod(), HttpMethod.POST);
     }

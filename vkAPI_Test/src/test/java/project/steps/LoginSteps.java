@@ -7,7 +7,7 @@ import org.testng.Assert;
 import project.forms.LoginForm;
 
 public class LoginSteps {
-    private PropertiesResourceManager properties = new PropertiesResourceManager("api");
+    private PropertiesResourceManager properties = new PropertiesResourceManager("api.properties");
 
     @Step("Enter credentials on login page")
     public void doLogin() {

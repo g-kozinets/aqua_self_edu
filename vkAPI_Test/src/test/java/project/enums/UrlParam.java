@@ -7,7 +7,7 @@ public enum  UrlParam {
     TYPE("type"),
     ITEM_ID("item_id"),
     ATTACHMENT("attachments"),
-    POSTS("photos"),
+    POSTS("posts"),
     EXTENSION("extended"),
     FILTER("filtes"),
     HASH("hash"),
