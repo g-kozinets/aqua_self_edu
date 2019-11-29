@@ -1,19 +1,21 @@
 package project.steps;
 
 import framework.configuration.Configuration;
+import framework.resources.PropertiesResourceManager;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import project.forms.LoginForm;
 
 public class LoginSteps {
+    private PropertiesResourceManager properties = new PropertiesResourceManager("api");
 
     @Step("Enter credentials on login page")
     public void doLogin() {
         LoginForm loginForm = new LoginForm();
         Assert.assertTrue(loginForm.isFormDisplayed(), "Not on login page");
 
-        loginForm.typeLogin(Configuration.getCurrentEnvironment().getLogin());
-        loginForm.typePassword(Configuration.getCurrentEnvironment().getPassword());
+        loginForm.typeLogin(properties.getProperty("login"));
+        loginForm.typePassword(properties.getProperty("password"));
         loginForm.clickSubmit();
     }
 }

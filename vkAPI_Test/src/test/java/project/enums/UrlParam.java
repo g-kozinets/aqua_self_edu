@@ -11,6 +11,8 @@ public enum  UrlParam {
     EXTENSION("extended"),
     FILTER("filtes"),
     HASH("hash"),
+    TOKEN("access_token"),
+    API_VER("v"),
     SERVER("server");
 
     private String method;
