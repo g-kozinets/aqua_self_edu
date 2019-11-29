@@ -1,9 +1,9 @@
 package project.api;
 
 import org.testng.Assert;
+import project.api.data.ParametersMap;
 import project.enums.ApiMethod;
 import project.enums.HttpMethod;
-import project.models.ParametersMap;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,10 +12,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class Api {
-    private static String apiUrl = "https://api.vk.com/method/";
-    private static String token = "12a183dc275aa84e49f079e6a22381d2007660ed27a3b716151198fd1420d6123d2f7d9b5e924d89c726e";
-    private static String apiVer = "5.103";
-    private static HashMap<String, Object> baseParams = new HashMap<>();
+    private static ParametersMap baseParams = new ParametersMap();
     private static HttpURLConnection con;
     private static String parameters = "";
 
@@ -49,7 +46,7 @@ public class Api {
         }
     }
 
-    private static void readParamsMap(HashMap<String, Object> params) {
+    private static void readParamsMap(ParametersMap params) {
         for (String key : params.keySet()) {
             addParameter(key, params.get(key));
         }
@@ -70,7 +67,7 @@ public class Api {
         setCon(apiUrl + apiMethod.getMethod(), HttpMethod.POST);
     }
 
-    protected static void setBaseParams(HashMap<String, Object> baseParams) {
+    protected static void setBaseParams(ParametersMap baseParams) {
         Api.baseParams = baseParams;
     }
 
