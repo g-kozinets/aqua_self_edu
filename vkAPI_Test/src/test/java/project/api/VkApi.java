@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import project.models.Post;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import static project.enums.ApiMethod.*;
 import static project.enums.UrlParam.*;
 
