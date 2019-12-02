@@ -34,25 +34,30 @@ public class VkTest extends BaseTest{
         Assert.assertTrue(myProfileForm.isFormDisplayed(), "Not on profile page");
         post.setUserId(myProfileForm.getUserId());
 
-        post.setPostId(vkApi.sendWallPost(post));
+        post = (vkApi.sendWallPost(post));
         postForm = new PostForm(post);
-        Assert.assertEquals(postForm.getPostMessage(), post.getMessage(), "Post text doesn't match");
+        Assert.assertEquals(postForm.getMessage(), post.getMessage(), "Post text doesn't match");
 
         post.setMessage(TextGenerator.generate(7));
-        vkApi.editPostText(post);
-        vkApi.editPostPhoto(post);
+        post = vkApi.editPostText(post);
+        postForm.waitTillEdited();
+        Assert.assertEquals(post.getMessage(), postForm.getMessage(), "Edited post text doesn't match");
 
-        Assert.assertEquals(postForm.getPostMessage(), post.getMessage(), "Edited post text doesn't match");
+        post = vkApi.editPostPhoto(post);
+        Assert.assertEquals(post.getImageId(), postForm.getImgId(), "Edited post photo doesn't match");
+
+        Assert.assertEquals(postForm.getMessage(), post.getMessage());
 
         vkApi.sendCommentToPost(post);
         postForm.loadMoreComments();
-        Assert.assertEquals(postForm.getPostComment(), post.getComment(), "Comments doesn't match");
+        Assert.assertEquals(postForm.getComment(), post.getComment(), "Comments doesn't match");
 
         postForm.likePost();
-        post.setLikesId(vkApi.getPostLikes(post));
+        post = vkApi.getPostLikes(post);
         Assert.assertTrue(post.getLikesId().contains(post.getUserId()));
 
         vkApi.deleteWallPost(post);
+        postForm.waitTillDeleted();
         Assert.assertFalse(postForm.isFormDisplayed(), "Post was not deleted");
     }
 

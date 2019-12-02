@@ -26,64 +26,68 @@ public class VkApi extends Api{
         setBaseParams(baseParams.newPut(API_VER, apiVer).put(TOKEN, token));
     }
 
-    public  int getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public  int sendWallPost(Post post) throws IOException {
+    public Post sendWallPost(Post post) throws IOException {
         params.newPut(MESSAGE, post.getMessage());
         sendNewParameters(POST, params);
         sendRequest();
-        return ResponseReader.getResponse().getInt("post_id");
+        post.setPostId(ResponseReader.getResponse().getInt("post_id"));
+        return post;
     }
 
-    public  void deleteWallPost(Post post) throws IOException {
+    public void deleteWallPost(Post post) throws IOException {
         params.newPut(POST_ID, post.getPostId());
         sendNewParameters(DELETE_POST, params);
         sendRequest();
     }
 
-    public  int sendCommentToPost(Post post) throws IOException {
+    public int sendCommentToPost(Post post) throws IOException {
         params.newPut(POST_ID, post.getPostId()).put(MESSAGE, post.getComment());
         sendNewParameters(COMMENT, params);
         sendRequest();
         return ResponseReader.getResponse().getInt("comment_id");
     }
 
-    public  void addLikeToPost(int postId) throws IOException {
+    public void addLikeToPost(int postId) throws IOException {
         params.newPut(TYPE, "post").put(ITEM_ID, postId);
         sendNewParameters(LIKE, params);
         sendRequest();
     }
 
-    public  ArrayList getPostLikes(Post post) throws IOException {
+    public Post getPostLikes(Post post) throws IOException {
         params.newPut(TYPE, "post").put(ITEM_ID, post.getPostId()).put(FILTER, "likes");
         sendNewParameters(GET_LIKES, params);
         sendRequest();
         JSONArray jsonArray = ResponseReader.getResponse().getJSONArray("items");
-        return ResponseReader.convertJsonArrToArray(jsonArray);
+        post.setLikesId(ResponseReader.convertJsonArrToArray(jsonArray));
+        return post;
     }
 
-    public  int editPostPhoto(Post post) throws Exception {
-        String attachment = uploadPhotoToWall(post.getImagePath());
+    public Post editPostPhoto(Post post) throws Exception {
+        post.setImageId(uploadPhotoToWall(post.getImagePath()));
         String postText = getPostText(post.getPostId());
 
-        params.newPut(ATTACHMENT, attachment).put(POST_ID, post.getPostId()).put(MESSAGE, postText);
+        params.newPut(ATTACHMENT, post.getImageId()).put(POST_ID, post.getPostId()).put(MESSAGE, postText);
         sendNewParameters(EDIT_POST, params);
         sendRequest();
 
-        return ResponseReader.getResponse().getInt("post_id");
+        post.setPostId(ResponseReader.getResponse().getInt("post_id"));
+        return post;
     }
 
-    public  int editPostText(Post post) throws Exception {
+    public Post editPostText(Post post) throws Exception {
         params.newPut(POST_ID, post.getPostId()).put(MESSAGE, post.getMessage());
         sendNewParameters(EDIT_POST, params);
         sendRequest();
 
-        return ResponseReader.getResponse().getInt("post_id");
+        post.setPostId(ResponseReader.getResponse().getInt("post_id"));
+        return post;
     }
 
-    public  String uploadPhotoToWall(String filePath) throws Exception {
+    public String uploadPhotoToWall(String filePath) throws Exception {
         sendNewParameters(GEL_WALL_SERVER);
         sendRequest();
         String serverUrl = ResponseReader.getResponse().getString("upload_url");
@@ -102,14 +106,14 @@ public class VkApi extends Api{
         return "photo" + userId + "_" + photoId;
     }
 
-    public  String getPostText(int postId) throws IOException {
+    public String getPostText(int postId) throws IOException {
         params.newPut(POSTS, userId + "_" + postId).put(EXTENSION, "0");
         sendNewParameters(GET_POST, params);
         sendRequest();
         return ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getString("text");
     }
 
-    public  String getPostImg(int userId, int postId) throws IOException {
+    public String getPostImg(int userId, int postId) throws IOException {
         params.newPut(POSTS, userId + "_" + postId).put(EXTENSION, "0");
         sendNewParameters(GET_POST, params);
         sendRequest();

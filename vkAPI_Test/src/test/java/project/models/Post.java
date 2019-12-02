@@ -1,12 +1,13 @@
 package project.models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Post {
     private String message;
     private String comment;
     private int postId;
-    private int imageId;
+    private String imageId;
     private int userId;
     private ArrayList likesId;
     private String imagePath;
@@ -35,11 +36,11 @@ public class Post {
         this.postId = postId;
     }
 
-    public int getImageId() {
+    public String getImageId() {
         return imageId;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(String imageId) {
         this.imageId = imageId;
     }
 
@@ -65,5 +66,23 @@ public class Post {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return postId == post.postId &&
+                userId == post.userId &&
+                Objects.equals(message, post.message) &&
+                Objects.equals(comment, post.comment) &&
+                Objects.equals(imageId, post.imageId) &&
+                Objects.equals(likesId, post.likesId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(message, comment, postId, imageId, userId, likesId);
     }
 }
