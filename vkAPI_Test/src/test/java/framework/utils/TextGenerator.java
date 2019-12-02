@@ -1,9 +1,11 @@
 package framework.utils;
 
+import net.bytebuddy.implementation.bytecode.assign.primitive.PrimitiveUnboxingDelegate;
+
 import java.util.Random;
 
 public class TextGenerator {
-    public static String generate(int length) {
+    public static String runGenerator(int length) {
         int leftLimit = 97;
         int rightLimit = 122;
         Random random = new Random();
@@ -19,4 +21,11 @@ public class TextGenerator {
         return generatedText;
     }
 
+    public static String generate(int length) {
+        return runGenerator(length);
+    }
+
+    public static String generate(String length) {
+        return runGenerator(Integer.parseInt(length));
+    }
 }

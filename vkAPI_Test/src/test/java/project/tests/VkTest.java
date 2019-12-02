@@ -1,5 +1,6 @@
 package project.tests;
 
+import framework.resources.PropertiesResourceManager;
 import project.api.VkApi;
 import framework.utils.TextGenerator;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ import project.steps.LoginSteps;
 import static project.enums.SideMenuId.MY_PROFILE;
 
 public class VkTest extends BaseTest{
+    PropertiesResourceManager prop = new PropertiesResourceManager("post.properties");
     private LoginSteps loginSteps = new LoginSteps();
     private MainFeedForm mainFeedForm = new MainFeedForm();
     private MyProfileForm myProfileForm;
@@ -21,9 +23,9 @@ public class VkTest extends BaseTest{
     public void loginTest() throws Exception {
         VkApi vkApi = new VkApi();
         Post post = new Post();
-        post.setMessage(TextGenerator.generate(7));
-        post.setComment(TextGenerator.generate(7));
-        post.setImagePath("./TestPhoto/GitHub-Mark.jpg");
+        post.setMessage(TextGenerator.generate(prop.getProperty("message_length")));
+        post.setComment(TextGenerator.generate(prop.getProperty("comment_length")));
+        post.setImagePath(prop.getProperty("image_path"));
 
         loginSteps.doLogin();
 
