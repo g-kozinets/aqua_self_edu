@@ -3,19 +3,20 @@ package project.models;
 import java.util.ArrayList;
 
 public class Post {
-    private String text;
+    private String message;
     private String comment;
     private int postId;
     private int imageId;
     private int userId;
     private ArrayList likesId;
+    private String imagePath;
 
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getComment() {
@@ -56,5 +57,13 @@ public class Post {
 
     public void setLikesId(ArrayList likesId) {
         this.likesId = likesId;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 }

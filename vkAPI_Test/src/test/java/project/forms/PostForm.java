@@ -3,6 +3,7 @@ package project.forms;
 import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ITextBox;
 import org.openqa.selenium.By;
+import project.models.Post;
 
 public class PostForm extends BaseForm {
     private String postTag = locator.toString().replaceAll("By.xpath:", "");
@@ -16,8 +17,12 @@ public class PostForm extends BaseForm {
         super(By.xpath(String.format("//div[@id='post%s_%s']", userId, postId)), "post form");
     }
 
+    public PostForm(Post post) {
+        super(By.xpath(String.format("//div[@id='post%s_%s']", post.getUserId(), post.getPostId())), "post");
+    }
 
-    public String getPostText() {
+
+    public String getPostMessage() {
         return wallPostTxb.getText();
     }
 

@@ -4,6 +4,8 @@ import framework.resources.PropertiesResourceManager;
 import project.api.data.ParametersMap;
 import project.api.multipart.MultipartUtility;
 import org.json.JSONArray;
+import project.models.Post;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import static project.enums.ApiMethod.*;
@@ -28,21 +30,21 @@ public class VkApi extends Api{
         return userId;
     }
 
-    public  int sendWallPost(String message) throws IOException {
-        params.newPut(MESSAGE, message);
+    public  int sendWallPost(Post post) throws IOException {
+        params.newPut(MESSAGE, post.getMessage());
         sendNewParameters(POST, params);
         sendRequest();
         return ResponseReader.getResponse().getInt("post_id");
     }
 
-    public  void deleteWallPost(int postId) throws IOException {
-        params.newPut(POST_ID, postId);
+    public  void deleteWallPost(Post post) throws IOException {
+        params.newPut(POST_ID, post.getPostId());
         sendNewParameters(DELETE_POST, params);
         sendRequest();
     }
 
-    public  int sendCommentToPost(int postId, String text) throws IOException {
-        params.newPut(POST_ID, postId).put(MESSAGE, text);
+    public  int sendCommentToPost(Post post) throws IOException {
+        params.newPut(POST_ID, post.getPostId()).put(MESSAGE, post.getComment());
         sendNewParameters(COMMENT, params);
         sendRequest();
         return ResponseReader.getResponse().getInt("comment_id");
@@ -54,27 +56,27 @@ public class VkApi extends Api{
         sendRequest();
     }
 
-    public  ArrayList getPostLikes(int postId) throws IOException {
-        params.newPut(TYPE, "post").put(ITEM_ID, postId).put(FILTER, "likes");
+    public  ArrayList getPostLikes(Post post) throws IOException {
+        params.newPut(TYPE, "post").put(ITEM_ID, post.getPostId()).put(FILTER, "likes");
         sendNewParameters(GET_LIKES, params);
         sendRequest();
         JSONArray jsonArray = ResponseReader.getResponse().getJSONArray("items");
         return ResponseReader.convertJsonArrToArray(jsonArray);
     }
 
-    public  int editPostPhoto(int postId, String filePath) throws Exception {
-        String attachment = uploadPhotoToWall(filePath);
-        String postText = getPostText(postId);
+    public  int editPostPhoto(Post post) throws Exception {
+        String attachment = uploadPhotoToWall(post.getImagePath());
+        String postText = getPostText(post.getPostId());
 
-        params.newPut(ATTACHMENT, attachment).put(POST_ID, postId).put(MESSAGE, postText);
+        params.newPut(ATTACHMENT, attachment).put(POST_ID, post.getPostId()).put(MESSAGE, postText);
         sendNewParameters(EDIT_POST, params);
         sendRequest();
 
         return ResponseReader.getResponse().getInt("post_id");
     }
 
-    public  int editPostText(int postId, String postText) throws Exception {
-        params.newPut(POST_ID, postId).put(MESSAGE, postText);
+    public  int editPostText(Post post) throws Exception {
+        params.newPut(POST_ID, post.getPostId()).put(MESSAGE, post.getMessage());
         sendNewParameters(EDIT_POST, params);
         sendRequest();
 

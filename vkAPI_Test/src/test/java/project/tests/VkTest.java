@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 import project.forms.MainFeedForm;
 import project.forms.MyProfileForm;
 import project.forms.PostForm;
+import project.models.Post;
 import project.steps.LoginSteps;
-import java.util.ArrayList;
 import static project.enums.SideMenuId.MY_PROFILE;
 
 public class VkTest extends BaseTest{
@@ -20,38 +20,37 @@ public class VkTest extends BaseTest{
     @Test
     public void loginTest() throws Exception {
         VkApi vkApi = new VkApi();
-        String postText = TextGenerator.generate(7);
-        String postComment = TextGenerator.generate(7);
-        int userId;
-        int postId;
-        String imageId;
+        Post post = new Post();
+        post.setMessage(TextGenerator.generate(7));
+        post.setComment(TextGenerator.generate(7));
+        post.setImagePath("./TestPhoto/GitHub-Mark.jpg");
 
         loginSteps.doLogin();
 
         mainFeedForm.selectOnSideMenu(MY_PROFILE);
         myProfileForm = new MyProfileForm();
         Assert.assertTrue(myProfileForm.isFormDisplayed(), "Not on profile page");
-        userId = myProfileForm.getUserId();
+        post.setUserId(myProfileForm.getUserId());
 
-        postId = vkApi.sendWallPost(postText);
-        postForm = new PostForm(userId, postId);
-        Assert.assertEquals(postForm.getPostText(), postText, "Post text doesn't match");
+        post.setPostId(vkApi.sendWallPost(post));
+        postForm = new PostForm(post);
+        Assert.assertEquals(postForm.getPostMessage(), post.getMessage(), "Post text doesn't match");
 
-        postText = TextGenerator.generate(7);
-        vkApi.editPostText(postId, postText);
-        vkApi.editPostPhoto(postId, "/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/testng-template-project-develop/vkAPI_Test/TestPhoto/GitHub-Mark.jpg");
+        post.setMessage(TextGenerator.generate(7));
+        vkApi.editPostText(post);
+        vkApi.editPostPhoto(post);
 
-        Assert.assertEquals(postForm.getPostText(), postText, "Edited post text doesn't match");
+        Assert.assertEquals(postForm.getPostMessage(), post.getMessage(), "Edited post text doesn't match");
 
-        vkApi.sendCommentToPost(postId, postComment);
+        vkApi.sendCommentToPost(post);
         postForm.loadMoreComments();
-        Assert.assertEquals(postForm.getPostComment(), postComment, "Comments doesn't match");
+        Assert.assertEquals(postForm.getPostComment(), post.getComment(), "Comments doesn't match");
 
         postForm.likePost();
-        ArrayList arrayList = vkApi.getPostLikes(postId);
-        Assert.assertTrue(arrayList.contains(userId));
+        post.setLikesId(vkApi.getPostLikes(post));
+        Assert.assertTrue(post.getLikesId().contains(post.getUserId()));
 
-        vkApi.deleteWallPost(postId);
+        vkApi.deleteWallPost(post);
         Assert.assertFalse(postForm.isFormDisplayed(), "Post was not deleted");
     }
 
