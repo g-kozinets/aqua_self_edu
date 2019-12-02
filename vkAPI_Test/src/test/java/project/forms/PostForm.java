@@ -6,10 +6,11 @@ import org.openqa.selenium.By;
 
 public class PostForm extends BaseForm {
     private String postTag = locator.toString().replaceAll("By.xpath:", "");
-    private ITextBox wallPostTxb = getElementFactory().getTextBox(By.xpath(postTag + "//div[contains(@class, 'wall_post_text')]"), "post text");
+    private ITextBox wallPostTxb = getElementFactory().getTextBox(By.xpath(postTag + "//div[contains(@class, 'wall_post_text')]"), "post");
     private IButton likeBtn = getElementFactory().getButton(By.xpath(postTag + "//a[contains(@class, ' like')]"), "like");
     private IButton moreCommentBtn = getElementFactory().getButton(By.xpath(postTag + "//a[contains(@class, 'replies_next')]"), "more comments");
-    private ITextBox postCommentTxb = getElementFactory().getTextBox(By.xpath(postTag + "//div[@class='wall_reply_text']"), "comment text");
+    private ITextBox postCommentTxb = getElementFactory().getTextBox(By.xpath(postTag + "//div[@class='wall_reply_text']"), "comment");
+    private IButton imageBtn = getElementFactory().getButton(By.xpath(postTag + "//a[contains(@class, 'image_cover')]"), "Image");
 
     public PostForm(int userId, int postId) {
         super(By.xpath(String.format("//div[@id='post%s_%s']", userId, postId)), "post form");
@@ -22,6 +23,11 @@ public class PostForm extends BaseForm {
 
     public String getPostComment() {
         return postCommentTxb.getText();
+    }
+
+    public String getPostImgId() {
+        String href = imageBtn.getAttribute("href");
+        return href.replaceAll("/photo", "");
     }
 
     public void likePost() {

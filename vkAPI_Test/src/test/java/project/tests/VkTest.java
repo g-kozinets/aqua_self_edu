@@ -24,6 +24,7 @@ public class VkTest extends BaseTest{
         String postComment = TextGenerator.generate(7);
         int userId;
         int postId;
+        String imageId;
 
         loginSteps.doLogin();
 
@@ -39,6 +40,7 @@ public class VkTest extends BaseTest{
         postText = TextGenerator.generate(7);
         vkApi.editPostText(postId, postText);
         vkApi.editPostPhoto(postId, "/home/ITRANSITION.CORP/g.kozinets/IdeaProjects/testng-template-project-develop/vkAPI_Test/TestPhoto/GitHub-Mark.jpg");
+
         Assert.assertEquals(postForm.getPostText(), postText, "Edited post text doesn't match");
 
         vkApi.sendCommentToPost(postId, postComment);
