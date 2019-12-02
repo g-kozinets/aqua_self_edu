@@ -103,7 +103,7 @@ public class VkApi extends Api{
         int photoId = ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getInt("id");
         userId = ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getInt("owner_id");
 
-        return "photo" + userId + "_" + photoId;
+        return userId + "_" + photoId;
     }
 
     public String getPostText(int postId) throws IOException {
