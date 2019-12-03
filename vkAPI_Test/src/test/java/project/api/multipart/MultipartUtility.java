@@ -34,9 +34,8 @@ public class MultipartUtility {
         }
         reader.close();
 
-// print result
+
         String output = response2.toString();
-        System.out.println(output);
         return output;
     }
 

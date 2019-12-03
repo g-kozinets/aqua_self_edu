@@ -16,7 +16,7 @@ public class TextGenerator {
             buffer.append((char) randomLimitedInt);
         }
         String generatedText = buffer.toString();
-        System.out.println(generatedText);
+
 
         return generatedText;
     }
