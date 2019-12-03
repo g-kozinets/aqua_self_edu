@@ -31,7 +31,7 @@ public class BaseTest {
         logger.info("----------------------------------------");
         logger.info("=== TEST '%1$s' '%2$s' ===", testContext.getName(), getStatusName(testResult.getStatus()));
         logger.info("----------------------------------------");
-        //getBrowser().quit();
+        getBrowser().quit();
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")

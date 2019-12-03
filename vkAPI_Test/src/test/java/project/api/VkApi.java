@@ -69,7 +69,7 @@ public class VkApi extends Api{
         post.setImageId(uploadPhotoToWall(post.getImagePath()));
         String postText = getPostText(post.getPostId());
 
-        params.newPut(ATTACHMENT, post.getImageId()).put(POST_ID, post.getPostId()).put(MESSAGE, postText);
+        params.newPut(ATTACHMENT, "photo" + post.getImageId()).put(POST_ID, post.getPostId()).put(MESSAGE, postText);
         sendNewParameters(EDIT_POST, params);
         sendRequest();
 

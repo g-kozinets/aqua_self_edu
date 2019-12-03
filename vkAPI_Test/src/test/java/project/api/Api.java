@@ -30,8 +30,6 @@ public class Api {
         out.flush();
         out.close();
 
-        System.out.println("Parameters: " + parameters);
-        System.out.println("========================== " + con.getResponseCode());
         ResponseReader.read(con);
         responseCodeHandler();
     }

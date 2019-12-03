@@ -27,7 +27,7 @@ public class ResponseReader {
         jsonResponse = content.toString();
         in.close();
 
-        System.out.println(jsonResponse);
+
         return jsonResponse;
     }
 
