@@ -40,18 +40,20 @@ public class BaseTest {
     }
 
     private String getStatusName(int status){
-        if(status == TestResult.SUCCESS){
-            return "SUCCESS";
-        }else if(status == TestResult.FAILURE){
-            return "FAILURE";
-        }else if(status == TestResult.SKIP){
-            return "SKIP";
-        }else if(status == TestResult.STARTED){
-            return "STARTER";
-        }else if(status == TestResult.SUCCESS_PERCENTAGE_FAILURE){
-            return "SUCCESS PERCENTAGE FAILURE";
-        }else {
-            return "UNDEFINED STATUS ID " + status;
+
+        switch (status) {
+            case TestResult.SUCCESS:
+                return "SUCCESS";
+            case TestResult.FAILURE:
+                return "FAILURE";
+            case TestResult.SKIP:
+                return "SKIP";
+            case TestResult.STARTED:
+                return "STARTED";
+            case TestResult.SUCCESS_PERCENTAGE_FAILURE:
+                return "SUCCESS PERCENTAGE FAILURE";
+            default:
+                return "UNDEFINED STATUS ID " + status;
         }
     }
 

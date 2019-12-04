@@ -6,9 +6,9 @@ import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
 
 public class LoginForm extends Form {
-    ITextBox loginTxb = getElementFactory().getTextBox(By.id("index_email"), "Login textbox");
-    ITextBox passwordTxb = getElementFactory().getTextBox(By.id("index_pass"), "Password textbox");
-    IButton submitBtn = getElementFactory().getButton(By.id("index_login_button"), "Submit button");
+    private ITextBox loginTxb = getElementFactory().getTextBox(By.id("index_email"), "Login textbox");
+    private ITextBox passwordTxb = getElementFactory().getTextBox(By.id("index_pass"), "Password textbox");
+    private IButton submitBtn = getElementFactory().getButton(By.id("index_login_button"), "Submit button");
 
     public LoginForm() {
         super(By.id("index_login"), "Login");

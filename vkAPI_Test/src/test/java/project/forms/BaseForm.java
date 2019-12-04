@@ -13,8 +13,4 @@ public class BaseForm extends Form {
     public void selectOnSideMenu(SideMenuId menu) {
         new SideMenu().goTo(menu.getId());
     }
-
-//    public boolean isInvisible() {
-//        waitForTrue((BooleanSupplier) ExpectedConditions.invisibilityOfElementLocated(locator), "");
-//    }
 }
