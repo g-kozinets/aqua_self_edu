@@ -1,6 +1,5 @@
 package project.api.data;
 
-import io.qameta.allure.Step;
 import project.enums.UrlParam;
 
 import java.util.HashMap;

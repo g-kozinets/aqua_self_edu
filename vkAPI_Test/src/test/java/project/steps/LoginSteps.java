@@ -1,6 +1,5 @@
 package project.steps;
 
-import framework.configuration.Configuration;
 import framework.resources.PropertiesResourceManager;
 import io.qameta.allure.Step;
 import org.testng.Assert;

@@ -1,7 +1,5 @@
 package framework.utils;
 
-import net.bytebuddy.implementation.bytecode.assign.primitive.PrimitiveUnboxingDelegate;
-
 import java.util.Random;
 
 public class TextGenerator {
@@ -15,10 +13,7 @@ public class TextGenerator {
                     (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-        String generatedText = buffer.toString();
-
-
-        return generatedText;
+        return buffer.toString();
     }
 
     public static String generate(int length) {
