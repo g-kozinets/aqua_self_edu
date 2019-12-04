@@ -13,13 +13,17 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class Api {
-    protected static String apiUrl;
-    private static ParametersMap baseParams = new ParametersMap();
-    private static HttpURLConnection con;
-    private static String parameters = "";
+public class ApiConnection {
+    private String apiUrl;
+    private ParametersMap baseParams = new ParametersMap();
+    private HttpURLConnection con;
+    private String parameters = "";
 
-    public static void setCon(String apiUrl, HttpMethod method) {
+    public ApiConnection(String apiUrl) {
+        this.apiUrl = apiUrl;
+    }
+
+    public void setCon(String apiUrl, HttpMethod method) {
         URL url = null;
         try {
             url = new URL(apiUrl);
@@ -45,7 +49,7 @@ public class Api {
         con.setReadTimeout(timeout);
     }
 
-    private static void sendRequest() {
+    private void sendRequest() {
         con.setDoOutput(true);
 
         try(DataOutputStream out = new DataOutputStream(con.getOutputStream())) {
@@ -61,7 +65,7 @@ public class Api {
 
     }
 
-    public static void addParameter(String parameter, Object value) {
+    public void addParameter(String parameter, Object value) {
         String format = String.format("%s=%s", parameter, value);
         if (parameters.equals("")) {
             parameters = format;
@@ -70,35 +74,35 @@ public class Api {
         }
     }
 
-    private static void readParamsMap(ParametersMap params) {
+    private void readParamsMap(ParametersMap params) {
         for (String key : params.keySet()) {
             addParameter(key, params.get(key));
         }
     }
 
-    private static void clearParameters() {
+    private void clearParameters() {
         parameters = "";
     }
 
-    protected static void sendNewParameters(ApiMethod apiMethod, ParametersMap params) {
+    protected void sendNewParameters(HttpMethod httpMethod, ApiMethod apiMethod, ParametersMap params) {
         clearParameters();
         readParamsMap(params);
         readParamsMap(baseParams);
-        setCon(apiUrl + apiMethod.getMethod(), HttpMethod.POST);
+        setCon(apiUrl + apiMethod.getMethod(), httpMethod);
         sendRequest();
     }
 
-    protected static void sendNewParameters(ApiMethod apiMethod) {
+    protected void sendNewParameters(HttpMethod httpMethod, ApiMethod apiMethod) {
         clearParameters();
         readParamsMap(baseParams);
-        setCon(apiUrl + apiMethod.getMethod(), HttpMethod.POST);
+        setCon(apiUrl + apiMethod.getMethod(), httpMethod);
     }
 
-    protected static void setBaseParams(ParametersMap baseParams) {
-        Api.baseParams = baseParams;
+    protected void setBaseParams(ParametersMap baseParams) {
+        this.baseParams = baseParams;
     }
 
-    private static void responseCodeHandler() {
+    private void responseCodeHandler() {
         int code = 0;
         try {
             code = con.getResponseCode();
