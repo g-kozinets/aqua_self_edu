@@ -35,6 +35,8 @@ public class VkTest extends BaseTest{
         Assert.assertTrue(myProfileForm.isFormDisplayed(), "Not on profile page");
         post.setUserId(myProfileForm.getUserId());
 
+
+
         post = (vkApi.sendWallPost(post));
         postForm = new PostForm(post);
         Assert.assertEquals(postForm.getMessage(), post.getMessage(), "Post text doesn't match");

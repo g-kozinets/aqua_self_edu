@@ -1,5 +1,6 @@
 package project.api;
 
+import aquality.selenium.logger.Logger;
 import framework.resources.PropertiesResourceManager;
 import framework.utils.ExceptionHandler;
 import org.testng.Assert;
@@ -24,6 +25,7 @@ public class ApiConnection {
     }
 
     public void setCon(String apiUrl, HttpMethod method) {
+
         URL url = null;
         try {
             url = new URL(apiUrl);
@@ -53,6 +55,7 @@ public class ApiConnection {
         con.setDoOutput(true);
 
         try(DataOutputStream out = new DataOutputStream(con.getOutputStream())) {
+            Logger.getInstance().info("Parameters: " + parameters);
             out.writeBytes(parameters);
             out.flush();
             out.close();
@@ -96,6 +99,7 @@ public class ApiConnection {
         clearParameters();
         readParamsMap(baseParams);
         setCon(apiUrl + apiMethod.getMethod(), httpMethod);
+        sendRequest();
     }
 
     protected void setBaseParams(ParametersMap baseParams) {

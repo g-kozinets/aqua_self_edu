@@ -28,6 +28,7 @@ public class ResponseReader {
         } catch (IOException e) {
             ExceptionHandler.throwException("Could not read JSON response", e);
         }
+        Logger.getInstance().info("\n" + jsonResponse);
         return jsonResponse;
     }
 
