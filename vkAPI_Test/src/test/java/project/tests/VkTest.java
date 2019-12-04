@@ -20,7 +20,7 @@ public class VkTest extends BaseTest{
     private PostForm postForm;
 
     @Test
-    public void loginTest() throws Exception {
+    public void loginTest() {
         VkApi vkApi = new VkApi();
         Post post = new Post();
         post.setMessage(TextGenerator.generate(prop.getProperty("message_length")));

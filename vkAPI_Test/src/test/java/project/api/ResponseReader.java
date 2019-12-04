@@ -1,6 +1,7 @@
 package project.api;
 
 import aquality.selenium.logger.Logger;
+import framework.utils.ExceptionHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -25,8 +26,7 @@ public class ResponseReader {
             }
             jsonResponse = content.toString();
         } catch (IOException e) {
-            Logger.getInstance().error("Could not read JSON response: " + e.getMessage());
-            throw new RuntimeException();
+            ExceptionHandler.throwException("Could not read JSON response", e);
         }
         return jsonResponse;
     }
