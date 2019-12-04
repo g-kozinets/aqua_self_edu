@@ -16,11 +16,11 @@ public enum Environment {
         return String.valueOf(configurationFile.getValue("/startUrl"));
     }
 
-    public String getLogin() {
-        return String.valueOf(configurationFile.getValue("/login"));
+    public int getWidth() {
+        return Integer.parseInt(String.valueOf(configurationFile.getValue("/width")));
     }
 
-    public String getPassword() {
-        return String.valueOf(configurationFile.getValue("/password"));
+    public int getHeight() {
+        return Integer.parseInt(String.valueOf(configurationFile.getValue("/height")));
     }
 }

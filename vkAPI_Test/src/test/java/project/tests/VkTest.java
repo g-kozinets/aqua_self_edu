@@ -21,6 +21,7 @@ public class VkTest extends BaseTest{
 
     @Test
     public void loginTest() {
+        int textLength = 7;
         VkApi vkApi = new VkApi();
         Post post = new Post();
         post.setMessage(TextGenerator.generate(prop.getProperty("message_length")));
@@ -38,7 +39,7 @@ public class VkTest extends BaseTest{
         postForm = new PostForm(post);
         Assert.assertEquals(postForm.getMessage(), post.getMessage(), "Post text doesn't match");
 
-        post.setMessage(TextGenerator.generate(7));
+        post.setMessage(TextGenerator.generate(textLength));
         post = vkApi.editPostText(post);
         postForm.waitTillEdited();
         Assert.assertEquals(post.getMessage(), postForm.getMessage(), "Edited post text doesn't match");
