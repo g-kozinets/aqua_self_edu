@@ -8,7 +8,7 @@ import project.models.Post;
 import static project.enums.ApiMethod.*;
 import static project.enums.UrlParam.*;
 
-public class VkApi extends Api{
+public class VkApi extends Api {
     private String token;
     private String apiVer;
     private int userId;
@@ -30,7 +30,6 @@ public class VkApi extends Api{
     public Post sendWallPost(Post post) {
         params.newPut(MESSAGE, post.getMessage());
         sendNewParameters(POST, params);
-        sendRequest();
         post.setPostId(ResponseReader.getResponse().getInt("post_id"));
         return post;
     }
@@ -38,26 +37,22 @@ public class VkApi extends Api{
     public void deleteWallPost(Post post) {
         params.newPut(POST_ID, post.getPostId());
         sendNewParameters(DELETE_POST, params);
-        sendRequest();
     }
 
     public int sendCommentToPost(Post post) {
         params.newPut(POST_ID, post.getPostId()).put(MESSAGE, post.getComment());
         sendNewParameters(COMMENT, params);
-        sendRequest();
         return ResponseReader.getResponse().getInt("comment_id");
     }
 
     public void addLikeToPost(int postId) {
         params.newPut(TYPE, "post").put(ITEM_ID, postId);
         sendNewParameters(LIKE, params);
-        sendRequest();
     }
 
     public Post getPostLikes(Post post) {
         params.newPut(TYPE, "post").put(ITEM_ID, post.getPostId()).put(FILTER, "likes");
         sendNewParameters(GET_LIKES, params);
-        sendRequest();
         JSONArray jsonArray = ResponseReader.getResponse().getJSONArray("items");
         post.setLikesId(ResponseReader.convertJsonArrToArray(jsonArray));
         return post;
@@ -69,7 +64,6 @@ public class VkApi extends Api{
 
         params.newPut(ATTACHMENT, "photo" + post.getImageId()).put(POST_ID, post.getPostId()).put(MESSAGE, postText);
         sendNewParameters(EDIT_POST, params);
-        sendRequest();
 
         post.setPostId(ResponseReader.getResponse().getInt("post_id"));
         return post;
@@ -78,7 +72,6 @@ public class VkApi extends Api{
     public Post editPostText(Post post) {
         params.newPut(POST_ID, post.getPostId()).put(MESSAGE, post.getMessage());
         sendNewParameters(EDIT_POST, params);
-        sendRequest();
 
         post.setPostId(ResponseReader.getResponse().getInt("post_id"));
         return post;
@@ -86,7 +79,6 @@ public class VkApi extends Api{
 
     public String uploadPhotoToWall(String filePath) {
         sendNewParameters(GEL_WALL_SERVER);
-        sendRequest();
         String serverUrl = ResponseReader.getResponse().getString("upload_url");
 
         ResponseReader.setJsonResponse(MultipartUtility.sendFile(serverUrl, filePath));
@@ -96,7 +88,6 @@ public class VkApi extends Api{
 
         params.newPut(SERVER, serverId).put(PHOTO, photo).put(HASH, hash);
         sendNewParameters(SAVE_WALL_PHOTO, params);
-        sendRequest();
         int photoId = ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getInt("id");
         userId = ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getInt("owner_id");
 
@@ -106,14 +97,12 @@ public class VkApi extends Api{
     public String getPostText(int postId) {
         params.newPut(POSTS, userId + "_" + postId).put(EXTENSION, "0");
         sendNewParameters(GET_POST, params);
-        sendRequest();
         return ResponseReader.getJson().getJSONArray("response").getJSONObject(0).getString("text");
     }
 
     public String getPostImg(int userId, int postId) {
         params.newPut(POSTS, userId + "_" + postId).put(EXTENSION, "0");
         sendNewParameters(GET_POST, params);
-        sendRequest();
         String imgUrl = ResponseReader.getJson()
                 .getJSONArray("response")
                 .getJSONObject(0)

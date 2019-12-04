@@ -1,5 +1,6 @@
 package project.api;
 
+import framework.resources.PropertiesResourceManager;
 import framework.utils.ExceptionHandler;
 import org.testng.Assert;
 import project.api.data.ParametersMap;
@@ -38,11 +39,13 @@ public class Api {
         } catch (ProtocolException e) {
             ExceptionHandler.throwException("Could not set HTTP method", e);
         }
-            con.setConnectTimeout(5000);
-            con.setReadTimeout(5000);
+
+        int timeout = Integer.parseInt(new PropertiesResourceManager("api.properties").getProperty("connectionTimeout"));
+        con.setConnectTimeout(timeout);
+        con.setReadTimeout(timeout);
     }
 
-    public static void sendRequest() {
+    private static void sendRequest() {
         con.setDoOutput(true);
 
         try(DataOutputStream out = new DataOutputStream(con.getOutputStream())) {
@@ -82,6 +85,7 @@ public class Api {
         readParamsMap(params);
         readParamsMap(baseParams);
         setCon(apiUrl + apiMethod.getMethod(), HttpMethod.POST);
+        sendRequest();
     }
 
     protected static void sendNewParameters(ApiMethod apiMethod) {
