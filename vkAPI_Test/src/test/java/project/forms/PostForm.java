@@ -47,11 +47,11 @@ public class PostForm extends BaseForm {
         moreCommentBtn.click();
     }
 
-    public void waitTillEdited() throws InterruptedException {
+    public void waitTillEdited() {
         Waiters.waitForVisibility(By.xpath(postTag + updatedColorTag), "Post was not edited");
     }
 
-    public void waitTillDeleted() throws InterruptedException {
+    public void waitTillDeleted() {
         Waiters.waitForInvisibility(By.xpath(postTag), "Post was not deleted");
     }
 

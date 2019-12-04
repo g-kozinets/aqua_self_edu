@@ -77,7 +77,7 @@ public class VkApi extends Api{
         return post;
     }
 
-    public Post editPostText(Post post) throws Exception {
+    public Post editPostText(Post post) throws IOException {
         params.newPut(POST_ID, post.getPostId()).put(MESSAGE, post.getMessage());
         sendNewParameters(EDIT_POST, params);
         sendRequest();

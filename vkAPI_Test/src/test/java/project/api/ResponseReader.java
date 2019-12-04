@@ -1,8 +1,8 @@
 package project.api;
 
+import aquality.selenium.logger.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,18 +16,18 @@ public class ResponseReader {
 
     private static String jsonResponse;
 
-    public static String read(URLConnection con) throws IOException {
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+    public static String read(URLConnection con) {
+        try(BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            jsonResponse = content.toString();
+        } catch (IOException e) {
+            Logger.getInstance().error("Could not read JSON response: " + e.getMessage());
+            throw new RuntimeException();
         }
-        jsonResponse = content.toString();
-        in.close();
-
-
         return jsonResponse;
     }
 
@@ -39,7 +39,7 @@ public class ResponseReader {
         return arrayList;
     }
 
-    public static JSONObject getResponse() throws IOException {
+    public static JSONObject getResponse() {
         return new JSONObject(jsonResponse).getJSONObject("response");
     }
 
@@ -47,7 +47,7 @@ public class ResponseReader {
         return new JSONObject(jsonResponse);
     }
 
-    public static Object getField(String name) throws IOException {
+    public static Object getField(String name) {
         return new JSONObject(jsonResponse).get(name);
     }
 }
